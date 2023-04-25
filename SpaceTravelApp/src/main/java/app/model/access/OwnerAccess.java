@@ -1,6 +1,5 @@
 package app.model.access;
 
-import app.model.users.Guide;
 import app.model.users.Owner;
 import app.model.users.User;
 
@@ -9,11 +8,12 @@ import java.util.Scanner;
 
 public class OwnerAccess implements Accessible {
 
-    public OwnerAccess() {
-        Owner.setAccessToken(9999);
-    }
     @Override
     public boolean signup(String username, int birthYear, int password, List<User> existingUsers) {
+        System.out.println(Owner.getAccessToken());
+        Owner.setAccessToken(9999);
+        System.out.println(Owner.getAccessToken());
+
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
                 System.out.println("Username " + username + " is already being used!");
@@ -34,6 +34,7 @@ public class OwnerAccess implements Accessible {
 
     @Override
     public boolean login(String username, int password, List<User> existingUsers) {
+        Owner.setAccessToken(9999);
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
                 if (user.getPassword() == password) {

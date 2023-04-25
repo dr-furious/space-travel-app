@@ -10,11 +10,9 @@ import java.util.Scanner;
 
 public class GuideAccess implements Accessible {
 
-    public GuideAccess() {
-        Guide.setAccessToken(1111);
-    }
     @Override
     public boolean signup(String username, int birthYear, int password, List<User> existingUsers) {
+        Guide.setAccessToken(1111);
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
                 System.out.println("Username " + username + " is already being used!");
@@ -35,6 +33,7 @@ public class GuideAccess implements Accessible {
 
     @Override
     public boolean login(String username, int password, List<User> existingUsers) {
+        Guide.setAccessToken(1111);
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
                 if (user.getPassword() == password) {

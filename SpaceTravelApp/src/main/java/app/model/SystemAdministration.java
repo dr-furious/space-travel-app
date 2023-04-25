@@ -2,6 +2,7 @@ package app.model;
 
 import app.model.access.AccessContext;
 import app.model.access.GuideAccess;
+import app.model.access.OwnerAccess;
 import app.model.access.TravelerAccess;
 import app.model.users.Traveler;
 import app.model.users.User;
@@ -36,7 +37,7 @@ public class SystemAdministration {
                 accessContext.setAccessStrategy(new GuideAccess());
             }
             case OWNER -> {
-                System.out.println("Owner");
+                accessContext.setAccessStrategy(new OwnerAccess());
             }
             default -> {}
         }

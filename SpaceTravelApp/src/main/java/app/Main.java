@@ -59,7 +59,7 @@ public class Main extends Application {
                     System.out.print("Birth year: ");
                     birthYear = scanner.nextInt();
                     scanner.nextLine();
-                    systemAdministration.signup(username, birthYear, password);
+                    systemAdministration.signup(username, password, birthYear);
                 }
                 case 3 -> {
                     systemAdministration.printUsers();

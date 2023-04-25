@@ -1,4 +1,4 @@
-package app.model.users;
+package app.model;
 
 public enum JourneyState {
     COMPLETED,

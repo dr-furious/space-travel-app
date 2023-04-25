@@ -6,8 +6,8 @@ public abstract class User {
     private String username;
     private int password;
     private TravelCard travelCard;
-    private final UserView currentUserView;
-    public User(String username, int birthYear, int password, UserView currentUserView) {
+    private final UserType currentUserView;
+    public User(String username, int birthYear, int password, UserType currentUserView) {
         this.username = username;
         this.password = password;
         this.travelCard = new TravelCard(
@@ -30,10 +30,13 @@ public abstract class User {
         return travelCard;
     }
 
-    public UserView getCurrentUserView() {
+    public UserType getCurrentUserView() {
         return currentUserView;
     }
 
+    public void setProfileName(String name) {
+        this.travelCard.setName(name);
+    }
     public abstract void printMyInfo(); // prints the name, birth year, function ect. to the screen
-    public abstract void loadData(); // loads the whole view for the user
+    // public abstract void loadData(); // loads the whole view for the user
 }

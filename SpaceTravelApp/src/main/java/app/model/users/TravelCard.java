@@ -47,4 +47,4 @@ public boolean decreaseBalance(double by) {
         this.balance -= by;
         return true;
         }
-        }
+}

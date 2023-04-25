@@ -1,9 +1,16 @@
 package app.model.users;
 
 public abstract class Staff extends User {
-    private int key;
-    public Staff(String username, int birthYear, int password, int key, UserView userView) {
+    private static int accessToken;
+    public Staff(String username, int birthYear, int password, UserType userView) {
         super(username, birthYear, password, userView);
-        this.key = key;
+    }
+
+    public static int getAccessToken() {
+        return accessToken;
+    }
+
+    public static void setAccessToken(int accessToken) {
+        Staff.accessToken = accessToken;
     }
 }

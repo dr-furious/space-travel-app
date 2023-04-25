@@ -1,49 +1,53 @@
 package app.model;
 
+import app.model.access.AccessContext;
+import app.model.access.GuideAccess;
+import app.model.access.TravelerAccess;
 import app.model.users.Traveler;
 import app.model.users.User;
+import app.model.users.UserType;
 
+import java.lang.reflect.AccessibleObject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SystemAdministration {
+
+    private AccessContext accessContext;
     private List<User> users;
     private static SystemAdministration instance = null;
     private SystemAdministration() {
         users = new ArrayList<>();
+        accessContext = new AccessContext();
     }
     public static SystemAdministration initialize() {
         if (instance == null) {
             instance = new SystemAdministration();
         }
-
         return instance;
     }
-    public void signup(String username, int birthYear,int password) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                System.out.println("Username " + username + " is already being used!");
-                return;
+
+    public void setAccessContext(UserType userType) {
+        switch (userType) {
+            case TRAVELER -> {
+                accessContext.setAccessStrategy(new TravelerAccess());
             }
+            case GUIDE -> {
+                accessContext.setAccessStrategy(new GuideAccess());
+            }
+            case OWNER -> {
+                System.out.println("Owner");
+            }
+            default -> {}
         }
-        this.users.add(new Traveler(username, birthYear, password));
+    }
+
+    public boolean signup(String username, int password, int birthYear) {
+        return accessContext.signup(username, password, birthYear, users);
     }
 
     public boolean login(String username, int password) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                if (user.getPassword() == password) {
-                    System.out.println("Signed in!");
-                    return true;
-                } else {
-                    System.out.println("Incorrect password. Try again!" + user.getPassword() + "|" + password);
-                    return false;
-                }
-            }
-        }
-
-        System.out.println("User with name " + username + " not found.");
-        return false;
+        return accessContext.login(username, password, users);
     }
 
     public void printUsers() {

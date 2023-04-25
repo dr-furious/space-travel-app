@@ -2,6 +2,7 @@ package app;
 
 import app.model.SystemAdministration;
 import app.model.Utility;
+import app.model.users.UserType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,7 +32,7 @@ public class Main extends Application {
             option = scanner.nextInt();
             scanner.nextLine();
             switch (option) {
-                case 0 -> {}
+                case 0 -> {System.exit(0);}
                 case 1 -> {
                     System.out.print("Username: ");
                     username = scanner.nextLine();
@@ -42,6 +43,14 @@ public class Main extends Application {
                 }
                 case 2 -> {
                     int birthYear;
+                    int who;
+                    System.out.print("Who? T(1)|G(2)|O(3): ");
+                    who = Integer.parseInt(scanner.nextLine());
+                    switch (who) {
+                        case 1 -> {systemAdministration.setAccessContext(UserType.TRAVELER);}
+                        case 2 -> {systemAdministration.setAccessContext(UserType.GUIDE);}
+                        case 3 -> {systemAdministration.setAccessContext(UserType.OWNER);}
+                    }
                     System.out.print("Username: ");
                     username = scanner.nextLine();
                     System.out.print("Password: ");

@@ -1,6 +1,6 @@
 package app.model.users;
 
-public enum UserView {
+public enum UserType {
     TRAVELER,
     GUIDE,
     OWNER

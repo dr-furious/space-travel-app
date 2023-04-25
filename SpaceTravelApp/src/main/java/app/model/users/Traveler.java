@@ -8,7 +8,7 @@ import java.util.List;
 public class Traveler extends User implements Payable {
     private List<Journey> journeys;
     public Traveler(String username, int birthYear, int password) {
-        super(username, birthYear, password, UserView.TRAVELER);
+        super(username, birthYear, password, UserType.TRAVELER);
         this.journeys = new ArrayList<>();
     }
 

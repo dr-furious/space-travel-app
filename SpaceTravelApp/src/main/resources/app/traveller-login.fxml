@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.StackPane?>
+<VBox alignment="CENTER" prefHeight="708.0" prefWidth="704.0" spacing="20.0" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ContinueAs"
+      stylesheets="@./css/login-signup.css"> <!-- Set control java file -->
+   <VBox styleClass="input-container" VBox.vgrow="NEVER">
+      <children>
+          <Label text="Username:" VBox.vgrow="NEVER"/>
+          <TextField VBox.vgrow="NEVER"> </TextField>
+      </children>
+   </VBox>
+   <VBox styleClass="input-container" VBox.vgrow="NEVER">
+      <children>
+         <Label text="Password:" VBox.vgrow="NEVER"/>
+          <TextField VBox.vgrow="NEVER"> </TextField>
+      </children>
+   </VBox>
+   <HBox styleClass="input-container" id="register" VBox.vgrow="NEVER">
+       <children>
+           <StackPane>
+               <Label text="Don't have an account?" />
+           </StackPane>
+           <Hyperlink text="Register" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
+       </children>
+   </HBox>
+   <HBox styleClass="input-container" VBox.vgrow="NEVER" alignment="CENTER" spacing="40">
+      <children>
+         <Button styleClass="btn-previous" mnemonicParsing="false" text="Previous"/>
+         <Button styleClass="btn-next" mnemonicParsing="false" text="Next"/>
+      </children>
+   </HBox>
+    <StackPane id="informative" alignment="TOP_LEFT">
+        <Label text="Incorrect password. Please try again. long long long long" />
+    </StackPane>
+</VBox>

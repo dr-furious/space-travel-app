@@ -2,11 +2,8 @@ package app;
 
 import app.controller.ControllerUtility;
 import app.model.SystemAdministration;
-import app.model.Utility;
 import app.model.users.UserType;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,7 +12,7 @@ import java.util.Scanner;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        ControllerUtility.switchSceneTo(stage, "hello-view.fxml");
+        ControllerUtility.switchSceneTo(stage, "traveller-login.fxml");
     }
 
     public static void main(String[] args) {

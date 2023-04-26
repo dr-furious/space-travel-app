@@ -1,0 +1,71 @@
+.input-container {
+    -fx-pref-width: 500px;
+    -fx-max-width: 500px;
+    -fx-font-size: 24px;
+    -fx-font-family: "American Typewriter";
+}
+
+.text-field {
+    -fx-background-radius: 10px;
+}
+
+.hyperlink,
+.hyperlink:visited {
+    -fx-text-fill: #0096ff;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #007bd3;
+    -fx-underline: false;
+}
+
+.label,
+.hyperlink {
+    -fx-font-size: 22px;
+}
+
+#register {
+    -fx-padding: 0 0 20px 0;
+}
+
+#register .label,
+#register .hyperlink {
+    -fx-text-alignment: CENTER;
+}
+
+.button {
+    -fx-pref-height: 80px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.btn-previous {
+    -fx-text-fill: black;
+    -fx-pref-width: 180px;
+    -fx-background-color: #d9d9d9;
+}
+
+.btn-previous:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+.btn-next{
+    -fx-text-fill: white;
+    -fx-pref-width: 280px;
+    -fx-background-color: #4e4eb8;
+}
+
+.btn-next:hover {
+    -fx-background-color: #40409b;
+}
+
+#informative {
+    -fx-pref-width: 500px;
+    -fx-max-width: 500px;
+    -fx-font-family: "American Typewriter";
+}
+
+#informative .label {
+    -fx-text-fill: red;
+    -fx-wrap-text: true;
+}

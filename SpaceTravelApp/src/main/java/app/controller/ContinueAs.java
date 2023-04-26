@@ -16,7 +16,7 @@ public class ContinueAs {
 
     @FXML
     protected void onTravelerButtonClick(Event event) throws IOException {
-        ControllerUtility.switchSceneOnEvent(event, "hello-traveller.fxml");
+        ControllerUtility.switchSceneOnEvent(event, "traveller-login.fxml");
     }
 
     @FXML

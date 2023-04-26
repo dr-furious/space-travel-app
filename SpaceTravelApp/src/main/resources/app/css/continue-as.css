@@ -1,0 +1,24 @@
+/* stylesheets for the "continue-as.fxml" screen */
+
+.button,
+.label {
+    -fx-font-family: "American Typewriter";
+}
+
+.button {
+    -fx-font-size: 34px;
+    -fx-text-fill: white;
+    -fx-background-color: #4e4eb8;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 380px;
+    -fx-pref-height: 120px;
+}
+
+.button:hover {
+    -fx-background-color: #40409b;
+}
+
+.label {
+    -fx-font-size: 48px;
+    -fx-padding: 0 0 20px 0;
+}

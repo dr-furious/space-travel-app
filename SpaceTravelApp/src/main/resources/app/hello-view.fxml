@@ -11,19 +11,5 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText" text="Continue As:" />
-    <Button onAction="#onTravelerButtonClick" prefHeight="50.0" prefWidth="200.0" text="Traveler">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor></Button>
-   <Button onAction="#onGuideButtonClick" text="Guide">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
-   <Button onAction="#onOwnerButtonClick" text="Owner">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
+    <Label text="Success!!" />
 </VBox>

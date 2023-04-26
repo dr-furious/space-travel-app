@@ -15,7 +15,7 @@
    <VBox styleClass="input-container" VBox.vgrow="NEVER">
       <children>
           <Label text="Username:" VBox.vgrow="NEVER"/>
-          <TextField  fx:id="username" VBox.vgrow="NEVER"> </TextField>
+          <TextField fx:id="username" VBox.vgrow="NEVER"> </TextField>
       </children>
    </VBox>
    <VBox styleClass="input-container" VBox.vgrow="NEVER">
@@ -24,12 +24,18 @@
           <TextField onKeyTyped="#onPasswordFieldKeyTyped" fx:id="password" VBox.vgrow="NEVER"> </TextField>
       </children>
    </VBox>
+    <VBox styleClass="input-container" VBox.vgrow="NEVER">
+        <children>
+            <Label text="Access Token:" VBox.vgrow="NEVER"/>
+            <TextField onKeyTyped="#onAccessTokenFieldKeyTyped" fx:id="accessToken" VBox.vgrow="NEVER"> </TextField>
+        </children>
+    </VBox>
    <HBox styleClass="input-container" id="register" VBox.vgrow="NEVER">
        <children>
            <StackPane>
                <Label text="Don't have an account?" />
            </StackPane>
-           <Hyperlink text="Register" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
+           <Hyperlink onAction="#onRegisterLinkClicked" text="Register" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
        </children>
    </HBox>
    <HBox styleClass="input-container" VBox.vgrow="NEVER" alignment="CENTER" spacing="40">

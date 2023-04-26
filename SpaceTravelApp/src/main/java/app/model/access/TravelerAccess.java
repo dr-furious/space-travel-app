@@ -7,33 +7,36 @@ import java.util.List;
 public class TravelerAccess implements Accessible {
 
     @Override
-    public boolean signup(String username, int birthYear, int password, List<User> existingUsers) {
+    public int signup(String username, int birthYear, int password, List<User> existingUsers, int token) {
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
                 System.out.println("Username " + username + " is already being used!");
-                return false;
+                return 1; //Incorrect Username Code
             }
         }
         existingUsers.add(new Traveler(username, birthYear, password));
         System.out.println("Signed in as Traveler!");
-        return true;
+        return 0; // Success Code
     }
 
     @Override
-    public boolean login(String username, int password, List<User> existingUsers) {
+    public int login(String username, int password, List<User> existingUsers, int token) {
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
+                if (user.getClass() != Traveler.class) {
+                    return 1;
+                }
                 if (user.getPassword() == password) {
                     System.out.println("Logged in as Traveler!");
-                    return true;
+                    return 0; // Success Code
                 } else {
                     System.out.println("Incorrect password. Try again!" + user.getPassword() + "|" + password);
-                    return false;
+                    return 2; // Incorrect Password Code
                 }
             }
         }
 
         System.out.println("User with name " + username + " not found.");
-        return false;
+        return 1; //Incorrect Username Code
     }
 }

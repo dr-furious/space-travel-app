@@ -9,52 +9,47 @@ import java.util.Scanner;
 public class OwnerAccess implements Accessible {
 
     @Override
-    public boolean signup(String username, int birthYear, int password, List<User> existingUsers) {
-        System.out.println(Owner.getAccessToken());
+    public int signup(String username, int birthYear, int password, List<User> existingUsers, int token) {
         Owner.setAccessToken(9999);
-        System.out.println(Owner.getAccessToken());
 
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
                 System.out.println("Username " + username + " is already being used!");
-                return false;
+                return 1; // Incorrect Username Code
             }
         }
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter access token");
-        int specialCode = Integer.parseInt(sc.nextLine());
-        if (specialCode != Owner.getAccessToken()) {
+        if (token != Owner.getAccessToken()) {
             System.out.println("Incorrect access token!");
-            return false;
+            return 3; // Incorrect Access Token Code
         }
         existingUsers.add(new Owner(username, birthYear, password));
         System.out.println("Signed in as Owner!");
-        return true;
+        return 0;
     }
 
     @Override
-    public boolean login(String username, int password, List<User> existingUsers) {
+    public int login(String username, int password, List<User> existingUsers, int token) {
         Owner.setAccessToken(9999);
         for (User user : existingUsers) {
             if (user.getUsername().equals(username)) {
+                if (user.getClass() != Owner.class) {
+                    return 1;
+                }
                 if (user.getPassword() == password) {
-                    System.out.println("Enter access token");
-                    Scanner sc = new Scanner(System.in);
-                    int specialCode = Integer.parseInt(sc.nextLine());
-                    if (specialCode != Owner.getAccessToken()) {
+                    if (token != Owner.getAccessToken()) {
                         System.out.println("Incorrect access token!");
-                        return false;
+                        return 3; // Incorrect Access Token Code
                     }
                     System.out.println("Logged in as Owner!");
-                    return true;
+                    return 0; // Success Code
                 } else {
                     System.out.println("Incorrect password. Try again!" + user.getPassword() + "|" + password);
-                    return false;
+                    return 2; // Incorrect Password Code
                 }
             }
         }
 
         System.out.println("User with name " + username + " not found.");
-        return false;
+        return 1; // Incorrect Username Code
     }
 }

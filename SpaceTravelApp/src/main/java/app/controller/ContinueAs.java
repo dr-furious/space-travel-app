@@ -1,5 +1,7 @@
 package app.controller;
 
+import app.model.SystemAdministration;
+import app.model.users.UserType;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,23 +11,27 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 public class ContinueAs {
-    @FXML
-    private Button traveler;
-    private Button guide;
-    private Button owner;
+    private static final SystemAdministration systemAdministration;
+
+    static {
+        systemAdministration = SystemAdministration.initialize();
+    }
 
     @FXML
     protected void onTravelerButtonClick(Event event) throws IOException {
+        systemAdministration.setAccessContext(UserType.TRAVELER);
         ControllerUtility.switchSceneOnEvent(event, "traveller-login.fxml");
     }
 
     @FXML
-    protected void onGuideButtonClick() {
-        System.out.println("Hello Guide!");
+    protected void onGuideButtonClick(Event event) throws IOException {
+        systemAdministration.setAccessContext(UserType.GUIDE);
+        ControllerUtility.switchSceneOnEvent(event, "staff-login.fxml");
     }
 
     @FXML
-    protected void onOwnerButtonClick() {
-        System.out.println("Hello Owner!");
+    protected void onOwnerButtonClick(Event event) throws IOException {
+        systemAdministration.setAccessContext(UserType.OWNER);
+        ControllerUtility.switchSceneOnEvent(event, "staff-login.fxml");
     }
 }

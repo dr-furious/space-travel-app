@@ -11,11 +11,15 @@ public class AccessContext {
         this.accessStrategy = accessStrategy;
     }
 
-    public boolean signup(String username,int birthYear, int password, List<User> existingUsers) {
-        return accessStrategy.signup(username, password,birthYear, existingUsers);
+    public int signup(String username,int birthYear, int password, List<User> existingUsers, int token) {
+        return accessStrategy.signup(username, password,birthYear, existingUsers, token);
     }
 
-    public boolean login(String username, int password, List<User> existingUsers) {
-        return accessStrategy.login(username, password, existingUsers);
+    public int login(String username, int password, List<User> existingUsers, int token) {
+        return accessStrategy.login(username, password, existingUsers, token);
+    }
+
+    public Accessible getAccessStrategy() {
+        return accessStrategy;
     }
 }

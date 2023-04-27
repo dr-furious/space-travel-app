@@ -4,9 +4,7 @@ import app.model.access.AccessContext;
 import app.model.access.GuideAccess;
 import app.model.access.OwnerAccess;
 import app.model.access.TravelerAccess;
-import app.model.users.Traveler;
-import app.model.users.User;
-import app.model.users.UserType;
+import app.model.users.*;
 
 import java.lang.reflect.AccessibleObject;
 import java.util.ArrayList;
@@ -16,6 +14,7 @@ public class SystemAdministration {
 
     private AccessContext accessContext;
     private List<User> users;
+    private User currentUser;
     private static SystemAdministration instance = null;
     private SystemAdministration() {
         users = new ArrayList<>();
@@ -43,12 +42,39 @@ public class SystemAdministration {
         }
     }
 
-    public boolean signup(String username, int password, int birthYear) {
-        return accessContext.signup(username, password, birthYear, users);
+    public AccessContext getAccessContext() {
+        return this.accessContext;
     }
 
-    public boolean login(String username, int password) {
-        return accessContext.login(username, password, users);
+    public int signup(String username, int password, int birthYear, int token) {
+        int responseCode = accessContext.signup(username, password, birthYear, users, token);
+        if (responseCode == 0) {
+            setCurrentUser(username);
+        }
+
+        return responseCode;
+    }
+
+    public int login(String username, int password, int token) {
+        int responseCode = accessContext.login(username, password, users, token);
+        if (responseCode == 0) {
+            setCurrentUser(username);
+        }
+
+        return responseCode;
+    }
+
+    public void logout() {
+        currentUser = null;
+        printUsers();
+    }
+
+    private void setCurrentUser(String username) {
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                currentUser = user;
+            }
+        }
     }
 
     public void printUsers() {

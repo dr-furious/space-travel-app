@@ -18,4 +18,8 @@ public class AccessContext {
     public int login(String username, int password, List<User> existingUsers, int token) {
         return accessStrategy.login(username, password, existingUsers, token);
     }
+
+    public Accessible getAccessStrategy() {
+        return accessStrategy;
+    }
 }

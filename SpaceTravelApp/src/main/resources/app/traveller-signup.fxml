@@ -30,12 +30,6 @@
           <PasswordField fx:id="password" onKeyTyped="#onPasswordFieldKeyTyped" VBox.vgrow="NEVER"> </PasswordField>
       </children>
    </VBox>
-    <VBox styleClass="input-container" VBox.vgrow="NEVER">
-        <children>
-            <Label text="Access Token:" VBox.vgrow="NEVER" />
-            <PasswordField fx:id="accessToken" onKeyTyped="#onAccessTokenFieldKeyTyped" VBox.vgrow="NEVER"> </PasswordField>
-        </children>
-    </VBox>
    <HBox alignment="CENTER" spacing="40" styleClass="input-container" VBox.vgrow="NEVER">
       <children>
          <Button mnemonicParsing="false" onAction="#onPreviousButtonClick" styleClass="btn-previous" text="Previous" />

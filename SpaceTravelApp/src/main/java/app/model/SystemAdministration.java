@@ -18,7 +18,6 @@ public class SystemAdministration {
     private static SystemAdministration instance = null;
     private SystemAdministration() {
         users = new ArrayList<>();
-        users.add(new Owner("Martin", 2001,12345678));
         accessContext = new AccessContext();
     }
     public static SystemAdministration initialize() {
@@ -43,6 +42,10 @@ public class SystemAdministration {
         }
     }
 
+    public AccessContext getAccessContext() {
+        return this.accessContext;
+    }
+
     public int signup(String username, int password, int birthYear, int token) {
         int responseCode = accessContext.signup(username, password, birthYear, users, token);
         if (responseCode == 0) {
@@ -59,6 +62,11 @@ public class SystemAdministration {
         }
 
         return responseCode;
+    }
+
+    public void logout() {
+        currentUser = null;
+        printUsers();
     }
 
     private void setCurrentUser(String username) {

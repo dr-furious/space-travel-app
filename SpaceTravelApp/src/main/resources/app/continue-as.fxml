@@ -12,18 +12,7 @@
     </padding>
 
     <Label text="Continue As:" />
-    <Button onAction="#onTravelerButtonClick" prefHeight="50.0" prefWidth="200.0" text="Traveler">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor></Button>
-   <Button onAction="#onGuideButtonClick" text="Guide">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
-   <Button onAction="#onOwnerButtonClick" text="Owner">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
+    <Button onAction="#onTravelerButtonClick" text="Traveler"> </Button>
+   <Button onAction="#onGuideButtonClick" text="Guide"> </Button>
+   <Button onAction="#onOwnerButtonClick" text="Owner"> </Button>
 </VBox>

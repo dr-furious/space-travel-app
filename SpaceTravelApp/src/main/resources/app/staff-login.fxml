@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.PasswordField?>
 <VBox alignment="CENTER" prefHeight="708.0" prefWidth="704.0" spacing="20.0" xmlns="http://javafx.com/javafx/19"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.Login"
       stylesheets="@./css/login-signup.css"> <!-- Set control java file -->
@@ -21,13 +22,13 @@
    <VBox styleClass="input-container" VBox.vgrow="NEVER">
       <children>
          <Label text="Password:" VBox.vgrow="NEVER"/>
-          <TextField onKeyTyped="#onPasswordFieldKeyTyped" fx:id="password" VBox.vgrow="NEVER"> </TextField>
+          <PasswordField onKeyTyped="#onPasswordFieldKeyTyped" fx:id="password" VBox.vgrow="NEVER"> </PasswordField>
       </children>
    </VBox>
     <VBox styleClass="input-container" VBox.vgrow="NEVER">
         <children>
             <Label text="Access Token:" VBox.vgrow="NEVER"/>
-            <TextField onKeyTyped="#onAccessTokenFieldKeyTyped" fx:id="accessToken" VBox.vgrow="NEVER"> </TextField>
+            <PasswordField onKeyTyped="#onAccessTokenFieldKeyTyped" fx:id="accessToken" VBox.vgrow="NEVER"> </PasswordField>
         </children>
     </VBox>
    <HBox styleClass="input-container" id="register" VBox.vgrow="NEVER">

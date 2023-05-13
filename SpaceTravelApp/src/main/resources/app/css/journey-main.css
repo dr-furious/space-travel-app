@@ -1,0 +1,102 @@
+.tab-pane {
+    -fx-padding: 8px;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: null;
+}
+
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #3f0de3;
+    -fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+}
+
+.tab:selected .tab-label {
+    -fx-border-color: none;
+    -fx-text-fill: white; /* font color */
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: d3d3d3;
+    -fx-font-size: 20px;
+    -fx-padding: 8px;
+    -fx-background-radius: 20px 20px 0 0;
+    -fx-focus-color: transparent;
+    -fx-cursor: hand;
+}
+
+.scroll-pane {
+    -fx-hbar-policy: never;
+}
+
+.scroll-items-container {
+    -fx-border-color: #d3d3d3;
+    -fx-background-color: #eaeaea;
+    -fx-border-width: 2px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-spacing: 8px;
+    -fx-padding: 8px;
+}
+
+.journey-item {
+    -fx-background-color: #d3d3d3;
+    -fx-background-radius: 10px;
+    -fx-padding: 4px 4px 4px 8px;
+    -fx-hgap: 4px;
+}
+
+.add-btn {
+    -fx-background-color: #99ff99;
+    -fx-background-radius: 8px;
+}
+
+.remove-btn {
+    -fx-background-color: #f18080;
+    -fx-background-radius: 8px;
+}
+
+.info-btn {
+    -fx-background-color: #96c7e5;
+    -fx-background-radius: 8px;
+}
+
+.add-btn:hover {
+    -fx-background-color: #84e884;
+}
+
+.remove-btn:hover {
+    -fx-background-color: #de6c6c;
+}
+
+.info-btn:hover {
+    -fx-background-color: #7bafce;
+}
+
+.add-btn:disabled,
+.remove-btn:disabled,
+.info-btn:disabled {
+    -fx-background-color: #a8a8a8;
+}
+
+#btn-container {
+    -fx-padding: 20px 80px;
+}
+
+#create-n-j-btn {
+    -fx-font-size: 24px;
+    -fx-background-color: #096709;
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+}
+
+#create-n-j-btn:hover {
+    -fx-background-color: #055205;
+}
+
+.state-btn:disabled {
+    -fx-background-color: #95adc4;
+    -fx-background-radius: 8px;
+    -fx-opacity: 1;
+}

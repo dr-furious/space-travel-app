@@ -5,6 +5,9 @@ import app.model.Utility;
 import app.model.access.AccessContext;
 import app.model.access.GuideAccess;
 import app.model.access.TravelerAccess;
+import app.model.users.Guide;
+import app.model.users.Traveler;
+import app.model.users.User;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -60,8 +63,15 @@ public class Login {
 
         switch (responseCode) {
             case 0 -> {
-                // switch scene
-                ControllerUtility.switchSceneOnEvent(event, "success.fxml");
+                // switch scene based on user type
+                User currentUser = systemAdministration.getCurrentUser();
+                if (currentUser.getClass() == Traveler.class) {
+                    ControllerUtility.switchSceneOnEvent(event, "traveller/traveller-main.fxml");
+                } else if (currentUser.getClass() == Guide.class) {
+                    ControllerUtility.switchSceneOnEvent(event, "guide/guide-main.fxml");
+                } else {
+                    ControllerUtility.switchSceneOnEvent(event, "owner/owner-main.fxml");
+                }
                 clear();
             }
             case 1 -> {

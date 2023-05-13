@@ -1,0 +1,104 @@
+.label {
+    -fx-font-size: 20px;
+}
+
+.button,
+.toggle-button {
+    -fx-cursor: hand;
+}
+
+.grid {
+    -fx-vgap: 10px;
+    -fx-hgap: 10px;
+    -fx-border-color: black;
+    -fx-padding: 20px;
+}
+
+.info-container {
+    -fx-background-color: #d3d3d3;
+    -fx-vgap: 20px;
+    -fx-hgap: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 20px;
+}
+
+.pay-btn-small,
+.h2-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-family: "American Typewriter";
+}
+
+#main-name-label {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-family: "American Typewriter";
+    -fx-background-color: #d3d3d3;
+    -fx-background-radius: 20px;
+}
+
+.pay-btn-small {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+}
+
+.withdraw-btn {
+    -fx-background-color: #605a7c;
+}
+
+.deposit-btn {
+    -fx-background-color: #5e46c0;
+}
+
+.withdraw-btn:hover {
+    -fx-background-color: #5a5381;
+}
+
+.deposit-btn:hover {
+    -fx-background-color: #5942bb;
+}
+
+.menu-button {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 100px;
+}
+
+.filler {
+    -fx-background-color: #d3d3d3;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 20px;
+}
+
+#auto-save,
+#sign-out {
+    -fx-font-family: "American Typewriter";
+}
+
+#auto-save {
+    -fx-background-color: #bcd6f6;
+    -fx-border-radius: 20px;
+    -fx-border-color: #0f3491;
+    -fx-border-width: 2px;
+    -fx-font-size: 18px;
+    -fx-background-radius: 20px;
+}
+
+#auto-save:hover {
+    -fx-background-color: #aac6e8;
+}
+
+#sign-out {
+    -fx-font-size: 20px;
+    -fx-background-color: #ffe5e5;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #910f0f;
+    -fx-border-width: 2px;
+}
+
+#sign-out:hover {
+    -fx-background-color: #eec5c5;
+}

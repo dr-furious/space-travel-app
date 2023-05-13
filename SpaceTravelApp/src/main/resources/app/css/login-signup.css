@@ -1,17 +1,15 @@
 .input-container,
-.menu-bar {
+#birth-year {
     -fx-pref-width: 500px;
     -fx-max-width: 500px;
     -fx-font-size: 24px;
     -fx-font-family: "American Typewriter";
 }
 
-.menu-bar {
-
-}
-
 .text-field {
     -fx-background-radius: 10px;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 10px;
 }
 
 .hyperlink,
@@ -73,4 +71,12 @@
 #informative .label {
     -fx-text-fill: red;
     -fx-wrap-text: true;
+}
+
+#birth-year {
+    -fx-cursor: hand;
+    -fx-background-radius: 10px;
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 10px;
 }

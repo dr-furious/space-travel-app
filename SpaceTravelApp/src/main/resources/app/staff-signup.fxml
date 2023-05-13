@@ -11,6 +11,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ChoiceBox?>
 <VBox alignment="CENTER" prefHeight="708.0" prefWidth="704.0" spacing="20.0" stylesheets="@./css/login-signup.css"
       xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.Signup"> <!-- Set control java file -->
    <VBox styleClass="input-container" VBox.vgrow="NEVER">
@@ -19,14 +20,14 @@
           <TextField fx:id="username" VBox.vgrow="NEVER"> </TextField>
       </children>
    </VBox>
-    <MenuBar>
-        <Menu text="Birth Year">
-            <MenuItem text="1920"> </MenuItem>
-            <MenuItem text="1921"> </MenuItem>
-            <MenuItem text="1922"> </MenuItem>
-            <MenuItem text="1923"> </MenuItem>
-        </Menu>
-    </MenuBar>
+    <VBox styleClass="input-container" VBox.vgrow="NEVER">
+        <children>
+            <Label text="Birth Year:" VBox.vgrow="NEVER" />
+            <ChoiceBox id="birth-year" fx:id="birthYears">
+
+            </ChoiceBox>
+        </children>
+    </VBox>
    <VBox styleClass="input-container" VBox.vgrow="NEVER">
       <children>
          <Label text="Password:" VBox.vgrow="NEVER" />

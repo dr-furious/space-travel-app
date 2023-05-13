@@ -1,6 +1,11 @@
 package app.controller;
 
 import app.Main;
+import app.model.SystemAdministration;
+import app.model.journeys.Journey;
+import app.model.journeys.JourneyState;
+import app.model.users.Owner;
+import app.model.users.Traveler;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -134,5 +139,256 @@ public class ControllerUtility {
         Button okButton = (Button) popupContent.getChildren().get(1);
         popup.setOnHidden(e -> root.setDisable(false));
         okButton.setOnAction(e -> popup.hide());
+    }
+
+    @FXML
+    public static void generateJourneyViewForGuide(Journey journey, VBox journeyList) {
+        GridPane gridPane = new GridPane();
+        gridPane.setMaxWidth(639);
+        gridPane.setPrefHeight(75);
+        gridPane.setPrefWidth(639);
+        gridPane.getStyleClass().add("journey-item");
+
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setHgrow(Priority.SOMETIMES);
+        column1.setMaxWidth(241);
+        column1.setMinWidth(10);
+        column1.setPrefWidth(236);
+
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setHgrow(Priority.SOMETIMES);
+        column2.setMaxWidth(305);
+        column2.setMinWidth(10);
+        column2.setPrefWidth(160);
+
+        ColumnConstraints column3 = new ColumnConstraints();
+        column3.setHgrow(Priority.SOMETIMES);
+        column3.setMaxWidth(185);
+        column3.setMinWidth(10);
+        column3.setPrefWidth(80);
+
+        ColumnConstraints column4 = new ColumnConstraints();
+        column4.setHgrow(Priority.SOMETIMES);
+        column4.setMaxWidth(116);
+        column4.setMinWidth(10);
+        column4.setPrefWidth(80);
+
+        ColumnConstraints column5 = new ColumnConstraints();
+        column5.setHgrow(Priority.SOMETIMES);
+        column5.setMaxWidth(107);
+        column5.setMinWidth(10);
+        column5.setPrefWidth(80);
+
+        gridPane.getColumnConstraints().addAll(column1, column2, column3, column4, column5);
+
+        RowConstraints row1 = new RowConstraints();
+        row1.setMinHeight(67);
+        row1.setPrefHeight(67);
+        row1.setVgrow(Priority.SOMETIMES);
+
+        gridPane.getRowConstraints().add(row1);
+
+        Label label1 = new Label(journey.getName());
+        label1.setPrefHeight(86);
+        label1.setPrefWidth(236);
+
+        Label label2 = new Label(journey.getPrice()+"");
+        label2.setPrefHeight(83);
+        label2.setPrefWidth(160);
+        GridPane.setConstraints(label2, 1, 0);
+
+        Button button = new Button(journey.getJourneyState().name().toLowerCase());
+        button.setDisable(true);
+        button.setPrefHeight(91);
+        button.setPrefWidth(80);
+        if (journey.getJourneyState() == JourneyState.PENDING) {
+            button.setStyle("-fx-background-color: #95adc4");
+        } else if (journey.getJourneyState() == JourneyState.CANCELLED) {
+            button.setStyle("-fx-background-color: #c49595");
+        } else {
+            button.setStyle("-fx-background-color: #9edc8e");
+        }
+        button.getStyleClass().add("state-btn");
+        GridPane.setConstraints(button, 4, 0);
+
+        gridPane.getChildren().addAll(label1, label2, button);
+        journeyList.getChildren().add(gridPane);
+    }
+    @FXML
+    public static void generateJourneyViewForOwner(Journey journey, VBox journeyList, boolean add, boolean remove, Owner owner) {
+        GridPane gridPane = new GridPane();
+        gridPane.setMaxWidth(639);
+        gridPane.setPrefHeight(75);
+        gridPane.setPrefWidth(639);
+        gridPane.getStyleClass().add("journey-item");
+
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setHgrow(Priority.SOMETIMES);
+        column1.setMaxWidth(241);
+        column1.setMinWidth(10);
+        column1.setPrefWidth(236);
+
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setHgrow(Priority.SOMETIMES);
+        column2.setMaxWidth(305);
+        column2.setMinWidth(10);
+        column2.setPrefWidth(160);
+
+        ColumnConstraints column3 = new ColumnConstraints();
+        column3.setHgrow(Priority.SOMETIMES);
+        column3.setMaxWidth(185);
+        column3.setMinWidth(10);
+        column3.setPrefWidth(80);
+
+        ColumnConstraints column4 = new ColumnConstraints();
+        column4.setHgrow(Priority.SOMETIMES);
+        column4.setMaxWidth(116);
+        column4.setMinWidth(10);
+        column4.setPrefWidth(80);
+
+        ColumnConstraints column5 = new ColumnConstraints();
+        column5.setHgrow(Priority.SOMETIMES);
+        column5.setMaxWidth(107);
+        column5.setMinWidth(10);
+        column5.setPrefWidth(80);
+
+        gridPane.getColumnConstraints().addAll(column1, column2, column3, column4, column5);
+
+        RowConstraints row1 = new RowConstraints();
+        row1.setMinHeight(67);
+        row1.setPrefHeight(67);
+        row1.setVgrow(Priority.SOMETIMES);
+
+        gridPane.getRowConstraints().add(row1);
+
+        Label label1 = new Label(journey.getName());
+        label1.setPrefHeight(86);
+        label1.setPrefWidth(236);
+
+        Label label2 = new Label(journey.getPrice()+"$");
+        label2.setPrefHeight(83);
+        label2.setPrefWidth(160);
+        GridPane.setConstraints(label2, 1, 0);
+
+        Button buttonAdd = new Button("Add");
+        buttonAdd.setDisable(add);
+        buttonAdd.setPrefHeight(91);
+        buttonAdd.setPrefWidth(80);
+        buttonAdd.getStyleClass().add("add-btn");
+        buttonAdd.setOnAction(e-> {
+            owner.approveJourney(journey);
+        });
+        GridPane.setConstraints(buttonAdd, 2, 0);
+
+        Button buttonRemove = new Button("Remove");
+        buttonRemove.setDisable(remove);
+        buttonRemove.setPrefHeight(91);
+        buttonRemove.setPrefWidth(80);
+        buttonRemove.getStyleClass().add("remove-btn");
+        buttonRemove.setOnAction(e -> {
+            owner.declineJourney(journey);
+        });
+        GridPane.setConstraints(buttonRemove, 3, 0);
+
+        Button buttonInfo = new Button("Info");
+        buttonInfo.setPrefHeight(91);
+        buttonInfo.setPrefWidth(80);
+        buttonInfo.getStyleClass().add("info-btn");
+        buttonInfo.setOnAction(e -> {
+            journey.info();
+        });
+        GridPane.setConstraints(buttonInfo, 4, 0);
+
+        gridPane.getChildren().addAll(label1, label2, buttonAdd, buttonRemove, buttonInfo);
+        journeyList.getChildren().add(gridPane);
+    }
+
+    public static void generateJourneyViewForTraveler(Journey journey, VBox journeyList, boolean add, boolean remove, Traveler traveler) {
+        GridPane gridPane = new GridPane();
+        gridPane.setMaxWidth(639);
+        gridPane.setPrefHeight(75);
+        gridPane.setPrefWidth(639);
+        gridPane.getStyleClass().add("journey-item");
+
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setHgrow(Priority.SOMETIMES);
+        column1.setMaxWidth(241);
+        column1.setMinWidth(10);
+        column1.setPrefWidth(236);
+
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setHgrow(Priority.SOMETIMES);
+        column2.setMaxWidth(305);
+        column2.setMinWidth(10);
+        column2.setPrefWidth(160);
+
+        ColumnConstraints column3 = new ColumnConstraints();
+        column3.setHgrow(Priority.SOMETIMES);
+        column3.setMaxWidth(185);
+        column3.setMinWidth(10);
+        column3.setPrefWidth(80);
+
+        ColumnConstraints column4 = new ColumnConstraints();
+        column4.setHgrow(Priority.SOMETIMES);
+        column4.setMaxWidth(116);
+        column4.setMinWidth(10);
+        column4.setPrefWidth(80);
+
+        ColumnConstraints column5 = new ColumnConstraints();
+        column5.setHgrow(Priority.SOMETIMES);
+        column5.setMaxWidth(107);
+        column5.setMinWidth(10);
+        column5.setPrefWidth(80);
+
+        gridPane.getColumnConstraints().addAll(column1, column2, column3, column4, column5);
+
+        RowConstraints row1 = new RowConstraints();
+        row1.setMinHeight(67);
+        row1.setPrefHeight(67);
+        row1.setVgrow(Priority.SOMETIMES);
+
+        gridPane.getRowConstraints().add(row1);
+
+        Label label1 = new Label(journey.getName());
+        label1.setPrefHeight(86);
+        label1.setPrefWidth(236);
+
+        Label label2 = new Label(journey.getPrice()+"$");
+        label2.setPrefHeight(83);
+        label2.setPrefWidth(160);
+        GridPane.setConstraints(label2, 1, 0);
+
+        Button buttonAdd = new Button("Add");
+        buttonAdd.setDisable(add);
+        buttonAdd.setPrefHeight(91);
+        buttonAdd.setPrefWidth(80);
+        buttonAdd.getStyleClass().add("add-btn");
+        GridPane.setConstraints(buttonAdd, 2, 0);
+
+        Button buttonRemove = new Button("Remove");
+        buttonRemove.setDisable(remove);
+        buttonRemove.setPrefHeight(91);
+        buttonRemove.setPrefWidth(80);
+        buttonRemove.getStyleClass().add("remove-btn");
+        GridPane.setConstraints(buttonRemove, 3, 0);
+
+        Button buttonInfo = new Button("Info");
+        buttonInfo.setPrefHeight(91);
+        buttonInfo.setPrefWidth(80);
+        buttonInfo.getStyleClass().add("info-btn");
+        GridPane.setConstraints(buttonInfo, 4, 0);
+
+        buttonAdd.setOnAction( actionEvent -> {
+            if (!traveler.addMyJourney(journey)) {
+                informOnEvent(actionEvent, "Cannot add this journey. Check your balance and age restrictions.", 400, 200);
+            }
+        });
+
+        buttonRemove.setOnAction(actionEvent -> {
+            traveler.removeMyJourney(journey);
+        });
+
+        gridPane.getChildren().addAll(label1, label2, buttonAdd, buttonRemove, buttonInfo);
+        journeyList.getChildren().add(gridPane);
     }
 }

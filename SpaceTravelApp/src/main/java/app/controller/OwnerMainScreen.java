@@ -2,18 +2,25 @@ package app.controller;
 
 import app.model.SystemAdministration;
 import app.model.Utility;
+import app.model.journeys.Journey;
 import app.model.users.Owner;
+import app.model.users.Traveler;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class OwnerMainScreen {
+public class OwnerMainScreen implements Initializable {
     private Owner owner;
     private Timer timer = new Timer();
     private static SystemAdministration systemAdministration;
@@ -22,12 +29,14 @@ public class OwnerMainScreen {
         systemAdministration = SystemAdministration.initialize();
     }
 
+    @FXML
+    private VBox newJourneys, allJourneys;
 
     @FXML
     private Label nameLabel, bYearLabel, passwordLabel, sessionDurationLabel, balanceLabel, accessTokenLabel;
 
     @FXML
-    private Button signOut, loadData, withdraw, deposit;
+    private Button signOut, save, withdraw, deposit;
 
     @FXML
     protected void onSignOutButtonClick(Event event) throws IOException {
@@ -36,21 +45,8 @@ public class OwnerMainScreen {
     }
 
     @FXML
-    protected void onLoadDataButtonClicked() {
-        owner = (Owner) systemAdministration.getCurrentUser();
-        nameLabel.setText(owner.getUsername());
-        bYearLabel.setText(owner.getTravelCard().getBirthYear() + "");
-        passwordLabel.setText(Utility.mask(owner.getPassword() + ""));
-        accessTokenLabel.setText(Utility.mask(Owner.getAccessToken() + ""));
-        balanceLabel.setText(owner.getTravelCard().getBalance() + "$");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    sessionDurationLabel.setText(systemAdministration.getSessionDuration() + "");
-                });
-            }
-        }, 0, 1000);
+    protected void onSaveButtonClicked() {
+
     }
 
     @FXML
@@ -66,5 +62,48 @@ public class OwnerMainScreen {
     protected void onDepositButtonClicked() {
         owner.deposit(1000);
         balanceLabel.setText(owner.getTravelCard().getBalance() + "$");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        owner = (Owner) systemAdministration.getCurrentUser();
+        nameLabel.setText(owner.getUsername());
+        bYearLabel.setText(owner.getTravelCard().getBirthYear() + "");
+        passwordLabel.setText(Utility.mask(owner.getPassword() + ""));
+        accessTokenLabel.setText(Utility.mask(Owner.getAccessToken() + ""));
+        balanceLabel.setText(owner.getTravelCard().getBalance() + "$");
+
+        fillJourneyTabs(owner.getNewJourneys(), newJourneys, true, true);
+        fillJourneyTabs(owner.getAllJourneys(), allJourneys, false, false);
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    sessionDurationLabel.setText(systemAdministration.getSessionDuration() + "");
+                });
+            }
+        }, 0, 1000);
+    }
+
+    @FXML
+    protected void onTabClicked() {
+        if (this.owner == null) {
+            return;
+        }
+        fillJourneyTabs(owner.getNewJourneys(), newJourneys, true, true);
+        fillJourneyTabs(owner.getAllJourneys(), allJourneys, false, false);
+    }
+
+    @FXML
+    private void fillJourneyTabs(ArrayList<Journey> journeys, VBox journeyList, boolean approve, boolean cancel) {
+        if (journeys == null) {
+            System.out.println("returned");
+            return;
+        }
+        journeyList.getChildren().clear();
+        for (Journey journey : journeys) {
+            ControllerUtility.generateJourneyViewForOwner(journey, journeyList, !approve, !cancel,owner);
+        }
     }
 }

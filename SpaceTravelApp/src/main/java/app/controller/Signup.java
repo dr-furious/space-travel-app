@@ -1,6 +1,5 @@
 package app.controller;
 
-import app.Main;
 import app.model.SystemAdministration;
 import app.model.Utility;
 import app.model.access.AccessContext;
@@ -10,16 +9,21 @@ import app.model.users.Traveler;
 import app.model.users.User;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Signup {
+public class Signup implements Initializable {
+    @FXML
+    private ChoiceBox<String> birthYears;
+
     @FXML
     private TextField username;
 
@@ -55,7 +59,7 @@ public class Signup {
 
         int intPassword;
         int intAT;
-        int birthYear = 0;
+        int birthYear;
 
         try {
             intPassword = Integer.parseInt(realPassword);
@@ -67,6 +71,13 @@ public class Signup {
         } catch (NumberFormatException numberFormatException) {
             intAT = 0;
         }
+        try {
+            birthYear = Integer.parseInt(birthYears.getValue());
+        } catch (NumberFormatException numberFormatException) {
+            birthYear = 0;
+        }
+
+
 
         String informativeText = "";
         if (username.length() <= 2) {
@@ -74,6 +85,9 @@ public class Signup {
         }
         if (realPassword.length() <= 7) {
             informativeText += "Password Error: Must have at least 8 characters (numbers)\n";
+        }
+        if (birthYear == 0) {
+            informativeText += "Birth Year Error: Must be selected value\n";
         }
 
         if (informativeText.length() > 0) {
@@ -167,5 +181,16 @@ public class Signup {
     private void clear() {
         this.realPassword = "";
         this.realAccessToken = "";
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ArrayList<String> years = new ArrayList<>();
+        for (int i = 1900; i < 2023; i++) {
+            years.add(i + "");
+        }
+
+        birthYears.getItems().addAll(years);
+        birthYears.setValue(years.get(years.size()-1));
     }
 }

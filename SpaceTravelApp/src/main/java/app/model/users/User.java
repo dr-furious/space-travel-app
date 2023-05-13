@@ -1,8 +1,9 @@
 package app.model.users;
 
 import app.model.Utility;
+import app.model.observer.Notifiable;
 
-public abstract class User implements Payable {
+public abstract class User implements Payable, Notifiable {
     private String username;
     private int password;
     private TravelCard travelCard;

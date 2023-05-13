@@ -22,6 +22,9 @@
     <MenuBar>
         <Menu text="Birth Year">
             <MenuItem text="1920"> </MenuItem>
+            <MenuItem text="1921"> </MenuItem>
+            <MenuItem text="1922"> </MenuItem>
+            <MenuItem text="1923"> </MenuItem>
         </Menu>
     </MenuBar>
    <VBox styleClass="input-container" VBox.vgrow="NEVER">

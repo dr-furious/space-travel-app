@@ -36,7 +36,7 @@
            <StackPane>
                <Label text="Don't have an account?" />
            </StackPane>
-           <Hyperlink onAction="#onRegisterLinkClicked" text="Register" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
+           <Hyperlink onAction="#onRegisterLinkClicked" text="Sign up" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
        </children>
    </HBox>
    <HBox styleClass="input-container" VBox.vgrow="NEVER" alignment="CENTER" spacing="40">

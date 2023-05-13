@@ -1,6 +1,6 @@
 package app.model.users;
 
-import app.model.Journey;
+import app.model.journeys.Journey;
 
 import java.util.ArrayList;
 import java.util.List;

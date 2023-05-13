@@ -21,6 +21,7 @@ public class ControllerUtility {
     }
     public static Scene switchSceneTo(Stage stage,String PathToFXML) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(PathToFXML));
+        System.out.println("H_Size: " + H_SIZE + ", V_Size: " + V_SIZE);
         Scene scene = new Scene(fxmlLoader.load(), H_SIZE, V_SIZE);
         stage.setTitle("Space Travel");
         stage.setScene(scene);

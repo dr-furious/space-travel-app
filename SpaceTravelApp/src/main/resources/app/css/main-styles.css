@@ -78,13 +78,16 @@
 }
 
 #auto-save {
-    -fx-background-color: radial-gradient(center 50% 50%, radius 70%, #ce5a5a, #f39393);
+    -fx-background-color: #bcd6f6;
+    -fx-border-radius: 20px;
+    -fx-border-color: #0f3491;
+    -fx-border-width: 2px;
     -fx-font-size: 18px;
-    -fx-background-radius: 50%;
+    -fx-background-radius: 20px;
 }
 
-#auto-save:selected {
-    -fx-background-color: radial-gradient(center 50% 50%, radius 70%, #40cc40, #a7fda7);
+#auto-save:hover {
+    -fx-background-color: #aac6e8;
 }
 
 #sign-out {

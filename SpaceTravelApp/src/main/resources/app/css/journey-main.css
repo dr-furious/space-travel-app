@@ -2,13 +2,6 @@
     -fx-padding: 8px;
 }
 
-.tab-content-area
-{
-    -fx-background-color: red;
-    -fx-padding: 0.0em; /* 0 */
-    /* -fx-opacity: -fx-disabled-opacity;*/
-}
-
 .tab-pane *.tab-header-background {
     -fx-background-color: null;
 }
@@ -85,4 +78,25 @@
 .remove-btn:disabled,
 .info-btn:disabled {
     -fx-background-color: #a8a8a8;
+}
+
+#btn-container {
+    -fx-padding: 20px 80px;
+}
+
+#create-n-j-btn {
+    -fx-font-size: 24px;
+    -fx-background-color: #096709;
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+}
+
+#create-n-j-btn:hover {
+    -fx-background-color: #055205;
+}
+
+.state-btn:disabled {
+    -fx-background-color: #95adc4;
+    -fx-background-radius: 8px;
+    -fx-opacity: 1;
 }

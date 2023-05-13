@@ -34,12 +34,8 @@ public class Utility {
     }
 
     public static String mask(String s) {
-        String mask = "";
-        for (int i = 0; i < s.length(); i++) {
-            mask += "*";
-        }
 
-        return mask;
+        return "*".repeat(s.length());
     }
 
     public static String removeLastChar(String s) {

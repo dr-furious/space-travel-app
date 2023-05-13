@@ -5,14 +5,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="900.0" prefWidth="1440.0" stylesheets="@../css/main-styles.css, @../css/traveller-main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="900.0" prefWidth="1440.0" stylesheets="@../css/main-styles.css, @../css/journey-main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.TravelerMainScreen">
     <VBox prefHeight="900.0" prefWidth="770.0">
         <children>
           <GridPane prefHeight="900.0" prefWidth="720.0" styleClass="grid">
@@ -28,7 +27,7 @@
                   <RowConstraints maxHeight="630.0" minHeight="10.0" prefHeight="345.0" vgrow="SOMETIMES" />
               </rowConstraints>
               <children>
-                  <Label id="main-name-label" prefHeight="115.0" prefWidth="720.0" text="&lt;Function Name&gt;" GridPane.columnSpan="2" />
+                  <Label id="main-name-label" prefHeight="115.0" prefWidth="720.0" text="Traveller" GridPane.columnSpan="2" />
                <GridPane styleClass="info-container" GridPane.columnSpan="4" GridPane.rowIndex="1">
                  <columnConstraints>
                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="412.0" minWidth="10.0" prefWidth="200.0" />
@@ -49,10 +48,10 @@
                      <Label prefHeight="78.0" prefWidth="200.0" text="Birth Year:" GridPane.rowIndex="2" />
                      <Label prefHeight="78.0" prefWidth="200.0" text="Password:" GridPane.rowIndex="3" />
                      <Label prefHeight="78.0" prefWidth="200.0" text="Session Duration:" GridPane.rowIndex="5" />
-                     <Label prefHeight="78.0" prefWidth="678.0" text="&lt;John Doe&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                     <Label prefHeight="78.0" prefWidth="678.0" text="&lt;1983&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                     <Label prefHeight="78.0" prefWidth="678.0" text="&lt;********&gt;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                     <Label prefHeight="78.0" prefWidth="678.0" text="&lt;00:00:00&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                     <Label fx:id="nameLabel" prefHeight="78.0" prefWidth="678.0" text="&lt;John Doe&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <Label fx:id="bYearLabel" prefHeight="78.0" prefWidth="678.0" text="&lt;1983&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <Label fx:id="passwordLabel" prefHeight="78.0" prefWidth="678.0" text="&lt;********&gt;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                     <Label fx:id="sessionDurationLabel" prefHeight="78.0" prefWidth="678.0" text="&lt;00:00:00&gt;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   </children>
                </GridPane>
                <GridPane styleClass="info-container" GridPane.columnSpan="4" GridPane.rowIndex="2">
@@ -69,17 +68,13 @@
                   <children>
                      <Label prefHeight="93.0" prefWidth="689.0" styleClass="h2-label" text="Payment Information" GridPane.columnSpan="3" />
                      <Label prefHeight="93.0" prefWidth="678.0" text="Your Balance:" GridPane.rowIndex="1" />
-                     <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="350.0" styleClass="pay-btn-small, withdraw-btn" text="Withdraw" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                     <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="350.0" styleClass="pay-btn-small, deposit-btn" text="Deposit" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                     <Label prefHeight="93.0" prefWidth="678.0" text="&lt;10 000$&gt;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                     <Button fx:id="withdraw" onAction="#onWithdrawButtonClicked" mnemonicParsing="false" prefHeight="68.0" prefWidth="350.0" styleClass="pay-btn-small, withdraw-btn" text="Withdraw 1000$" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                     <Button fx:id="deposit" onAction="#onDepositButtonClicked" mnemonicParsing="false" prefHeight="68.0" prefWidth="350.0" styleClass="pay-btn-small, deposit-btn" text="Deposit 1000$" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                     <Label fx:id="balanceLabel" prefHeight="93.0" prefWidth="678.0" text="&lt;10 000$&gt;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                   </children>
                </GridPane>
-               <HBox prefHeight="92.0" prefWidth="178.0" styleClass="filler" GridPane.columnIndex="2">
-                  <children>
-                      <Label prefHeight="52.0" prefWidth="117.0" text="Auto Save: " />
-                     <ToggleButton id="auto-save" mnemonicParsing="false" prefHeight="52.0" prefWidth="60.0" text="Off" />
-                  </children></HBox>
-               <Button id="sign-out" mnemonicParsing="false" prefHeight="102.0" prefWidth="156.0" text="Leave" GridPane.columnIndex="3" />
+               <Button id="sign-out" fx:id="signOut" mnemonicParsing="false" onAction="#onSignOutButtonClick" prefHeight="102.0" prefWidth="156.0" text="Leave" GridPane.columnIndex="3" />
+               <Button id="auto-save" fx:id="loadData" mnemonicParsing="false" onAction="#onLoadDataButtonClicked" prefHeight="129.0" prefWidth="204.0" text="Load Data" GridPane.columnIndex="2" />
               </children>
           </GridPane>
         </children>
@@ -91,20 +86,19 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="268.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="689.0" minHeight="10.0" prefHeight="628.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="689.0" minHeight="10.0" prefHeight="725.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="724.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
             </rowConstraints>
          <children>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2">
               <tabs>
                   <Tab text="My Journeys">
                      <content>
                         <ScrollPane prefHeight="567.0" prefWidth="600.0">
                            <content>
-                              <VBox prefHeight="580.0" prefWidth="640.0" styleClass="scroll-items-container">
+                              <VBox prefWidth="640.0" styleClass="scroll-items-container">
                                  <children>
-                                    <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                    <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -118,12 +112,12 @@
                                        <children>
                                           <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                           <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                          <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                          <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                          <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                        </children>
                                     </GridPane>
-                                    <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                    <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -137,12 +131,12 @@
                                        <children>
                                           <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                           <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                          <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                          <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                          <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                        </children>
                                     </GridPane>
-                                     <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                          <columnConstraints>
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -156,12 +150,12 @@
                                          <children>
                                              <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                              <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                             <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                             <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                          </children>
                                      </GridPane>
-                                     <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                          <columnConstraints>
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -175,12 +169,12 @@
                                          <children>
                                              <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                              <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                             <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                             <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                          </children>
                                      </GridPane>
-                                     <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                          <columnConstraints>
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -194,12 +188,12 @@
                                          <children>
                                              <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                              <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                             <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                             <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                          </children>
                                      </GridPane>
-                                     <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                          <columnConstraints>
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -213,12 +207,12 @@
                                          <children>
                                              <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                              <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                             <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                             <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                          </children>
                                      </GridPane>
-                                     <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                          <columnConstraints>
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -232,12 +226,12 @@
                                          <children>
                                              <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                              <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                             <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                             <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                          </children>
                                      </GridPane>
-                                     <GridPane styleClass="journey-item" maxWidth="639.0" prefHeight="75.0" prefWidth="639.0">
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                          <columnConstraints>
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
@@ -251,9 +245,47 @@
                                          <children>
                                              <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
                                              <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button styleClass="add-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Add" GridPane.columnIndex="2" />
-                                             <Button styleClass="remove-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Remove" GridPane.columnIndex="3" />
-                                             <Button styleClass="info-btn" mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" text="Info" GridPane.columnIndex="4" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
+                                         </children>
+                                     </GridPane>
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
+                                         <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                         <children>
+                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
+                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
+                                         </children>
+                                     </GridPane>
+                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
+                                         <columnConstraints>
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
+                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
+                                         </columnConstraints>
+                                         <rowConstraints>
+                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                         </rowConstraints>
+                                         <children>
+                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
+                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
+                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                          </children>
                                      </GridPane>
 
@@ -264,9 +296,9 @@
                   </Tab>
                   <Tab text="Available Journeys">
                       <content>
-                          <ScrollPane>
+                          <ScrollPane prefHeight="642.0" prefWidth="662.0">
                               <content>
-                                  <VBox prefHeight="580.0" prefWidth="678.0" styleClass="scroll-items-container">
+                                  <VBox prefHeight="629.0" prefWidth="678.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>

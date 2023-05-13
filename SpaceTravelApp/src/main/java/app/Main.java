@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        ControllerUtility.switchSceneTo(stage, "traveler/traveller-main.fxml");
+        ControllerUtility.switchSceneTo(stage, "continue-as.fxml");
     }
 
     public static void main(String[] args) {

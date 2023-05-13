@@ -2,7 +2,7 @@ package app.model.users;
 
 import app.model.Utility;
 
-public abstract class User {
+public abstract class User implements Payable {
     private String username;
     private int password;
     private TravelCard travelCard;
@@ -58,9 +58,9 @@ public abstract class User {
             return true;
         }
 
-        public boolean decreaseBalance(double by) {
+        public boolean decreaseBalance(double by) throws NotEnoughMoneyException {
             if (this.balance - by < 0 || by <= 0) {
-                return false;
+                throw new NotEnoughMoneyException("Cannot withdraw more money than you own.");
             }
             this.balance -= by;
             return true;

@@ -74,7 +74,7 @@
                   </children>
                </GridPane>
                <Button id="sign-out" fx:id="signOut" mnemonicParsing="false" onAction="#onSignOutButtonClick" prefHeight="102.0" prefWidth="156.0" text="Leave" GridPane.columnIndex="3" />
-               <Button id="auto-save" fx:id="loadData" mnemonicParsing="false" onAction="#onLoadDataButtonClicked" prefHeight="129.0" prefWidth="204.0" text="Load Data" GridPane.columnIndex="2" />
+               <Button id="auto-save" fx:id="save" mnemonicParsing="false" onAction="#onSaveButtonClicked" prefHeight="129.0" prefWidth="204.0" text="Save" GridPane.columnIndex="2" />
               </children>
           </GridPane>
         </children>
@@ -92,11 +92,11 @@
          <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2">
               <tabs>
-                  <Tab text="My Journeys">
+                  <Tab onSelectionChanged="#onTabClicked" text="My Journeys">
                      <content>
-                        <ScrollPane prefHeight="567.0" prefWidth="600.0">
+                        <ScrollPane prefHeight="567.0" prefWidth="600.0" maxWidth="640.0">
                            <content>
-                              <VBox prefWidth="640.0" styleClass="scroll-items-container">
+                              <VBox fx:id="myJourneys" prefWidth="640.0" styleClass="scroll-items-container">
                                  <children>
                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                       <columnConstraints>
@@ -136,179 +136,27 @@
                                           <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
                                        </children>
                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="add-btn" text="Add" GridPane.columnIndex="2" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="remove-btn" text="Remove" GridPane.columnIndex="3" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Info" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
 
                                  </children></VBox>
                            </content>
                         </ScrollPane>
                      </content>
                   </Tab>
-                  <Tab text="Available Journeys">
+                  <Tab onSelectionChanged="#onTabClicked" text="Available Journeys">
                       <content>
-                          <ScrollPane prefHeight="642.0" prefWidth="662.0">
+                          <ScrollPane prefHeight="567.0" prefWidth="600.0" maxWidth="640.0">
                               <content>
-                                  <VBox prefHeight="629.0" prefWidth="678.0" styleClass="scroll-items-container">
+                                  <VBox fx:id="availableJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>
                       </content>
                   </Tab>
-                  <Tab text="All Journeys">
+                  <Tab onSelectionChanged="#onTabClicked" text="All Journeys">
                       <content>
-                          <ScrollPane>
+                          <ScrollPane prefHeight="567.0" prefWidth="600.0">
                               <content>
-                                  <VBox prefHeight="580.0" prefWidth="678.0" styleClass="scroll-items-container">
+                                  <VBox fx:id="allJourneys" prefHeight="580.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>

@@ -1,28 +1,50 @@
 package app.model.journeys;
 
+import app.model.observer.Notifiable;
+import app.model.observer.Observable;
 import app.model.users.Guide;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Journey {
-    private int id;
+public class Journey implements Observable {
+    private long id;
     private String name;
     private int price;
     private int loggedUsers;
     private int capacity;
     private Guide author;
     private String date;
-    private String description;
+    private JourneyState journeyState;
+
+    private ArrayList<Notifiable> observers;
+    // Guide -> Owner : PENDING, ACCEPTED, DECLINED
+    // Traveler :
 
 
+    public Journey(long id, String name, int price, int capacity, Guide author, String date, JourneyState journeyState) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.loggedUsers = 0;
+        this.capacity = capacity;
+        this.author = author;
+        this.date = date;
+        this.journeyState = journeyState;
+        this.observers = new ArrayList<>();
+    }
 
+    public Journey(long id, Guide author, String date, JourneyState journeyState) {
+        this.id = id;
+        this.loggedUsers = 0;
+    }
 
     // ====== GETTERS AND SETTERS =====
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -74,11 +96,60 @@ public class Journey {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
+
+    public JourneyState getJourneyState() {
+        return journeyState;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setJourneyState(JourneyState journeyState) {
+        this.journeyState = journeyState;
+        updateObservers();
+    }
+
+    public String info() {
+        return "Regular Journey: " + this.id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != Journey.class && obj.getClass() != ElderJourney.class) {
+            return false;
+        }
+
+        return this.id == ((Journey) obj).getId();
+    }
+
+    @Override
+    public void addObserver(Notifiable observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Notifiable observer) {
+        this.observers.remove(observer);
+    }
+
+    @Override
+    public void updateObservers() {
+        for (Notifiable observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    public void increaseLoggedUsers() {
+        if (journeyState == JourneyState.FULLY_BOOKED) {
+            return;
+        }
+        loggedUsers++;
+        if (loggedUsers == capacity) {
+            setJourneyState(JourneyState.FULLY_BOOKED);
+        }
+    }
+
+    public void decreaseLoggedUsers() {
+        loggedUsers--;
+        if (loggedUsers < capacity) {
+            setJourneyState(JourneyState.AVAILABLE);
+        }
     }
 }

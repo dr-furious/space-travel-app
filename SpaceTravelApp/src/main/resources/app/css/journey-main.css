@@ -18,7 +18,7 @@
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab {
-    -fx-background-color: d3d3d3;
+    -fx-background-color: #d3d3d3;
     -fx-font-size: 20px;
     -fx-padding: 8px;
     -fx-background-radius: 20px 20px 0 0;
@@ -96,7 +96,6 @@
 }
 
 .state-btn:disabled {
-    -fx-background-color: #95adc4;
     -fx-background-radius: 8px;
     -fx-opacity: 1;
 }

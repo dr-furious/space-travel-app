@@ -29,7 +29,7 @@ fx:controller="app.controller.GuideMainScreen">
                   <RowConstraints maxHeight="630.0" minHeight="10.0" prefHeight="345.0" vgrow="SOMETIMES" />
               </rowConstraints>
               <children>
-                  <Label id="main-name-label" prefHeight="115.0" prefWidth="720.0" text="&lt;Function Name&gt;" GridPane.columnSpan="2" />
+                  <Label id="main-name-label" prefHeight="115.0" prefWidth="720.0" text="Guide" GridPane.columnSpan="2" />
                <GridPane styleClass="info-container" GridPane.columnSpan="4" GridPane.rowIndex="1">
                  <columnConstraints>
                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="412.0" minWidth="10.0" prefWidth="200.0" />
@@ -77,7 +77,7 @@ fx:controller="app.controller.GuideMainScreen">
                      <Label fx:id="balanceLabel" prefHeight="93.0" prefWidth="678.0" text="&lt;10 000$&gt;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                   </children>
                </GridPane>
-                  <Button id="auto-save" fx:id="loadData" mnemonicParsing="false" onAction="#onLoadDataButtonClicked" prefHeight="129.0" prefWidth="204.0" text="Load Data" GridPane.columnIndex="2" />
+                  <Button id="auto-save" fx:id="save" mnemonicParsing="false" onAction="#onSaveButtonClicked" prefHeight="129.0" prefWidth="204.0" text="Save" GridPane.columnIndex="2" />
                <Button fx:id="signOut" onAction="#onSignOutButtonClick" id="sign-out" mnemonicParsing="false" prefHeight="102.0" prefWidth="156.0" text="Leave" GridPane.columnIndex="3" />
               </children>
           </GridPane>
@@ -96,11 +96,11 @@ fx:controller="app.controller.GuideMainScreen">
          <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2">
               <tabs>
-                  <Tab text="My Journeys">
+                  <Tab onSelectionChanged="#onTabClicked" text="My Journeys">
                      <content>
                         <ScrollPane prefHeight="567.0" prefWidth="600.0">
                            <content>
-                              <VBox prefWidth="640.0" styleClass="scroll-items-container">
+                              <VBox fx:id="myJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                  <children>
                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                       <columnConstraints>
@@ -136,146 +136,27 @@ fx:controller="app.controller.GuideMainScreen">
                                           <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
                                        </children>
                                     </GridPane>
-                                    <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                      <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                          <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                          <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                       </children>
-                                    </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
-                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
-                                         <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="236.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="160.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="80.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="80.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                         <children>
-                                             <Label prefHeight="86.0" prefWidth="236.0" text="&lt;Example name&gt;" />
-                                             <Label prefHeight="83.0" prefWidth="160.0" text="&lt;Price&gt;" GridPane.columnIndex="1" />
-                                             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="80.0" styleClass="info-btn" text="Pending" GridPane.columnIndex="4" />
-                                         </children>
-                                     </GridPane>
 
                                  </children></VBox>
                            </content>
                         </ScrollPane>
                      </content>
                   </Tab>
-                  <Tab text="Accepted Journeys">
+                  <Tab onSelectionChanged="#onTabClicked" text="Accepted Journeys">
                       <content>
-                          <ScrollPane prefHeight="642.0" prefWidth="662.0">
+                          <ScrollPane prefHeight="567.0" prefWidth="600.0">
                               <content>
-                                  <VBox prefHeight="629.0" prefWidth="678.0" styleClass="scroll-items-container">
+                                  <VBox fx:id="acceptedJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>
                       </content>
                   </Tab>
-                  <Tab text="Declined Journeys">
+                  <Tab onSelectionChanged="#onTabClicked" text="Declined Journeys">
                       <content>
-                          <ScrollPane>
+                          <ScrollPane prefHeight="567.0" prefWidth="600.0">
                               <content>
-                                  <VBox prefHeight="580.0" prefWidth="678.0" styleClass="scroll-items-container">
+                                  <VBox fx:id="declinedJourneys" prefHeight="580.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>
@@ -285,7 +166,7 @@ fx:controller="app.controller.GuideMainScreen">
             </TabPane>
             <HBox id="btn-container" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <children>
-                  <Button id="create-n-j-btn" mnemonicParsing="false" prefHeight="195.0" prefWidth="710.0" text="Create New Journey" />
+                  <Button onAction="#onCreateJourneyButtonClick" id="create-n-j-btn" mnemonicParsing="false" prefHeight="195.0" prefWidth="710.0" text="Create New Journey" />
                </children>
             </HBox>
          </children>

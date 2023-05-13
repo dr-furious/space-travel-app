@@ -2,6 +2,7 @@ package app.controller;
 
 import app.model.SystemAdministration;
 import app.model.Utility;
+import app.model.journeys.Journey;
 import app.model.users.Traveler;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -16,11 +17,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TravelerMainScreen {
+public class TravelerMainScreen implements Initializable {
     private Traveler traveler;
     private Timer timer = new Timer();
     private static SystemAdministration systemAdministration;
@@ -29,12 +31,14 @@ public class TravelerMainScreen {
         systemAdministration = SystemAdministration.initialize();
     }
 
+    @FXML
+    private VBox myJourneys, availableJourneys, allJourneys;
 
     @FXML
     private Label nameLabel, bYearLabel, passwordLabel, sessionDurationLabel, balanceLabel;
 
     @FXML
-    private Button signOut, loadData, withdraw, deposit;
+    private Button signOut, save, withdraw, deposit;
 
     @FXML
     protected void onSignOutButtonClick(Event event) throws IOException {
@@ -43,20 +47,8 @@ public class TravelerMainScreen {
     }
 
     @FXML
-    protected void onLoadDataButtonClicked() {
-        traveler = (Traveler) systemAdministration.getCurrentUser();
-        nameLabel.setText(traveler.getUsername());
-        bYearLabel.setText(traveler.getTravelCard().getBirthYear() + "");
-        passwordLabel.setText(Utility.mask(traveler.getPassword() + ""));
-        balanceLabel.setText(traveler.getTravelCard().getBalance() + "$");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    sessionDurationLabel.setText(systemAdministration.getSessionDuration() + "");
-                });
-            }
-        }, 0, 1000);
+    protected void onSaveButtonClicked() {
+
     }
 
     @FXML
@@ -72,5 +64,53 @@ public class TravelerMainScreen {
     protected void onDepositButtonClicked() {
         traveler.deposit(1000);
         balanceLabel.setText(traveler.getTravelCard().getBalance() + "$");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        traveler = (Traveler) systemAdministration.getCurrentUser();
+        nameLabel.setText(traveler.getUsername());
+        bYearLabel.setText(traveler.getTravelCard().getBirthYear() + "");
+        passwordLabel.setText(Utility.mask(traveler.getPassword() + ""));
+        balanceLabel.setText(traveler.getTravelCard().getBalance() + "$");
+
+        fillJourneyTabs(traveler.getMyJourneys(), myJourneys, false, true);
+        fillJourneyTabs(traveler.getAvailableJourneys(), availableJourneys, true, false);
+        fillJourneyTabs(traveler.getAllJourneys(), allJourneys, false, false);
+
+        System.out.println(traveler.getMyJourneys());
+        System.out.println(traveler.getAvailableJourneys());
+        System.out.println(traveler.getAllJourneys());
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    sessionDurationLabel.setText(systemAdministration.getSessionDuration() + "");
+                });
+            }
+        }, 0, 1000);
+    }
+
+    @FXML
+    protected void onTabClicked() {
+        if (this.traveler == null) {
+            return;
+        }
+        fillJourneyTabs(traveler.getMyJourneys(), myJourneys, false, true);
+        fillJourneyTabs(traveler.getAvailableJourneys(), availableJourneys, true, false);
+        fillJourneyTabs(traveler.getAllJourneys(), allJourneys, false, false);
+    }
+
+    @FXML
+    private void fillJourneyTabs(ArrayList<Journey> journeys, VBox journeyList, boolean add, boolean remove) {
+        if (journeys == null) {
+            System.out.println("returned");
+            return;
+        }
+        journeyList.getChildren().clear();
+        for (Journey journey : journeys) {
+            ControllerUtility.generateJourneyViewForTraveler(journey, journeyList, !add, !remove, traveler);
+        }
     }
 }

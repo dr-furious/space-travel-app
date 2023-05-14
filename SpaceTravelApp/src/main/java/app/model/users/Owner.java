@@ -68,7 +68,6 @@ public class Owner extends Staff {
         JourneyState journeyState = journey.getJourneyState();
 
         if (journeyState == JourneyState.PENDING) {
-            System.out.println("Owner seeeee ya");
             if (allJourneys.contains(journey)) {
                 return;
             }

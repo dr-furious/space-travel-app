@@ -234,7 +234,6 @@ public class Guide extends Staff {
         JourneyState journeyState = journey.getJourneyState();
 
         if (journeyState == JourneyState.PENDING && journey.getAuthor() == this) {
-            System.out.println("Seeeee ya");
             if (myJourneys.contains(journey)) {
                 return;
             }

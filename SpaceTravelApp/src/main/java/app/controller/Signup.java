@@ -189,11 +189,11 @@ public class Signup implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<String> years = new ArrayList<>();
-        for (int i = 1900; i < 2023; i++) {
+        for (int i = 1900; i < 2015; i++) {
             years.add(i + "");
         }
 
         birthYears.getItems().addAll(years);
-        birthYears.setValue(years.get(years.size()-1));
+        birthYears.setValue(years.get(years.size()-18));
     }
 }

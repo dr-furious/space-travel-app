@@ -86,7 +86,6 @@ public class Traveler extends User {
         }
 
         if (journeyState == JourneyState.AVAILABLE) {
-            System.out.println("Traveller see ya");
             addNewJourney(journey);
             if (journey.getClass() == ElderJourney.class) {
                 ElderJourney elderJourney = (ElderJourney) journey;

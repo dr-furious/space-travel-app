@@ -15,6 +15,16 @@ public class Utility {
         return (long) (Math.random() * (max-min) + min);
     }
 
+    public static double generateRandom(double min, double max) {
+        if (min > max) {
+            double temp = min;
+            min = max;
+            max = temp;
+        }
+
+        return (Math.random() * (max-min) + min);
+    }
+
     public static boolean containsNonNumericChars(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) < '0' || s.charAt(i) > '9') {

@@ -1,0 +1,8 @@
+module:com.example.spacetravelapp
+app
+app.controller
+app.model
+app.model.access
+app.model.journeys
+app.model.observer
+app.model.users

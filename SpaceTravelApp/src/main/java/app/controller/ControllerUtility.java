@@ -11,9 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBase;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -188,11 +186,11 @@ public class ControllerUtility {
 
         gridPane.getRowConstraints().add(row1);
 
-        Label label1 = new Label(journey.getName());
+        Label label1 = new Label("Name: " + journey.getName());
         label1.setPrefHeight(86);
         label1.setPrefWidth(236);
 
-        Label label2 = new Label(journey.getPrice()+"");
+        Label label2 = new Label("Price: " + journey.getPrice()+"$");
         label2.setPrefHeight(83);
         label2.setPrefWidth(160);
         GridPane.setConstraints(label2, 1, 0);
@@ -215,7 +213,7 @@ public class ControllerUtility {
         journeyList.getChildren().add(gridPane);
     }
     @FXML
-    public static void generateJourneyViewForOwner(Journey journey, VBox journeyList, boolean add, boolean remove, Owner owner) {
+    public static void generateJourneyViewForOwner(Journey journey, VBox journeyList, boolean add, boolean remove, Owner owner, TabPane tabPane) {
         GridPane gridPane = new GridPane();
         gridPane.setMaxWidth(639);
         gridPane.setPrefHeight(75);
@@ -261,11 +259,11 @@ public class ControllerUtility {
 
         gridPane.getRowConstraints().add(row1);
 
-        Label label1 = new Label(journey.getName());
+        Label label1 = new Label("Name: " + journey.getName());
         label1.setPrefHeight(86);
         label1.setPrefWidth(236);
 
-        Label label2 = new Label(journey.getPrice()+"$");
+        Label label2 = new Label("Price: " + journey.getPrice()+"$");
         label2.setPrefHeight(83);
         label2.setPrefWidth(160);
         GridPane.setConstraints(label2, 1, 0);
@@ -275,9 +273,6 @@ public class ControllerUtility {
         buttonAdd.setPrefHeight(91);
         buttonAdd.setPrefWidth(80);
         buttonAdd.getStyleClass().add("add-btn");
-        buttonAdd.setOnAction(e-> {
-            owner.approveJourney(journey);
-        });
         GridPane.setConstraints(buttonAdd, 2, 0);
 
         Button buttonRemove = new Button("Remove");
@@ -285,25 +280,35 @@ public class ControllerUtility {
         buttonRemove.setPrefHeight(91);
         buttonRemove.setPrefWidth(80);
         buttonRemove.getStyleClass().add("remove-btn");
-        buttonRemove.setOnAction(e -> {
-            owner.declineJourney(journey);
-        });
         GridPane.setConstraints(buttonRemove, 3, 0);
 
         Button buttonInfo = new Button("Info");
         buttonInfo.setPrefHeight(91);
         buttonInfo.setPrefWidth(80);
         buttonInfo.getStyleClass().add("info-btn");
-        buttonInfo.setOnAction(e -> {
-            journey.info();
-        });
         GridPane.setConstraints(buttonInfo, 4, 0);
+
+        Tab selected = tabPane.getSelectionModel().getSelectedItem();
+
+        buttonAdd.setOnAction(e-> {
+            owner.approveJourney(journey);
+            selected.getOnSelectionChanged().handle(null);
+        });
+
+        buttonRemove.setOnAction(e -> {
+            owner.declineJourney(journey);
+            selected.getOnSelectionChanged().handle(null);
+        });
+
+        buttonInfo.setOnAction(actionEvent -> {
+            informOnEvent(actionEvent, journey.info(), 600,400);
+        });
 
         gridPane.getChildren().addAll(label1, label2, buttonAdd, buttonRemove, buttonInfo);
         journeyList.getChildren().add(gridPane);
     }
 
-    public static void generateJourneyViewForTraveler(Journey journey, VBox journeyList, boolean add, boolean remove, Traveler traveler) {
+    public static void generateJourneyViewForTraveler(Journey journey, VBox journeyList, boolean add, boolean remove, Traveler traveler, TabPane tabPane) {
         GridPane gridPane = new GridPane();
         gridPane.setMaxWidth(639);
         gridPane.setPrefHeight(75);
@@ -349,11 +354,11 @@ public class ControllerUtility {
 
         gridPane.getRowConstraints().add(row1);
 
-        Label label1 = new Label(journey.getName());
+        Label label1 = new Label("Name: " + journey.getName());
         label1.setPrefHeight(86);
         label1.setPrefWidth(236);
 
-        Label label2 = new Label(journey.getPrice()+"$");
+        Label label2 = new Label("Price: " + journey.getPrice()+"$");
         label2.setPrefHeight(83);
         label2.setPrefWidth(160);
         GridPane.setConstraints(label2, 1, 0);
@@ -378,14 +383,23 @@ public class ControllerUtility {
         buttonInfo.getStyleClass().add("info-btn");
         GridPane.setConstraints(buttonInfo, 4, 0);
 
+        Tab selected = tabPane.getSelectionModel().getSelectedItem();
+
         buttonAdd.setOnAction( actionEvent -> {
             if (!traveler.addMyJourney(journey)) {
                 informOnEvent(actionEvent, "Cannot add this journey. Check your balance and age restrictions.", 400, 200);
+                return;
             }
+            selected.getOnSelectionChanged().handle(null);
         });
 
         buttonRemove.setOnAction(actionEvent -> {
             traveler.removeMyJourney(journey);
+            selected.getOnSelectionChanged().handle(null);
+        });
+
+        buttonInfo.setOnAction(actionEvent -> {
+            informOnEvent(actionEvent, journey.info(), 600,400);
         });
 
         gridPane.getChildren().addAll(label1, label2, buttonAdd, buttonRemove, buttonInfo);

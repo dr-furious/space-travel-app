@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -28,6 +29,9 @@ public class OwnerMainScreen implements Initializable {
     static {
         systemAdministration = SystemAdministration.initialize();
     }
+
+    @FXML
+    private TabPane tabContainer;
 
     @FXML
     private VBox newJourneys, allJourneys;
@@ -103,7 +107,7 @@ public class OwnerMainScreen implements Initializable {
         }
         journeyList.getChildren().clear();
         for (Journey journey : journeys) {
-            ControllerUtility.generateJourneyViewForOwner(journey, journeyList, !approve, !cancel,owner);
+            ControllerUtility.generateJourneyViewForOwner(journey, journeyList, !approve, !cancel,owner, tabContainer);
         }
     }
 }

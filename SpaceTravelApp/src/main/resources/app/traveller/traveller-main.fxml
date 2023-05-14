@@ -90,13 +90,13 @@
                 <RowConstraints maxHeight="724.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
             </rowConstraints>
          <children>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2">
+            <TabPane fx:id="tabContainer" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2">
               <tabs>
                   <Tab onSelectionChanged="#onTabClicked" text="My Journeys">
                      <content>
-                        <ScrollPane prefHeight="567.0" prefWidth="600.0" maxWidth="640.0">
+                        <ScrollPane prefHeight="567.0" prefWidth="600.0">
                            <content>
-                              <VBox fx:id="myJourneys" prefWidth="640.0" styleClass="scroll-items-container">
+                              <VBox fx:id="myJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                  <children>
                                     <GridPane maxWidth="639.0" prefHeight="75.0" prefWidth="639.0" styleClass="journey-item">
                                       <columnConstraints>
@@ -144,7 +144,7 @@
                   </Tab>
                   <Tab onSelectionChanged="#onTabClicked" text="Available Journeys">
                       <content>
-                          <ScrollPane prefHeight="567.0" prefWidth="600.0" maxWidth="640.0">
+                          <ScrollPane prefHeight="567.0" prefWidth="600.0">
                               <content>
                                   <VBox fx:id="availableJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
@@ -156,7 +156,7 @@
                       <content>
                           <ScrollPane prefHeight="567.0" prefWidth="600.0">
                               <content>
-                                  <VBox fx:id="allJourneys" prefHeight="580.0" prefWidth="640.0" styleClass="scroll-items-container">
+                                  <VBox fx:id="allJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>

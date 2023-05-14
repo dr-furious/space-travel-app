@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,6 +31,9 @@ public class TravelerMainScreen implements Initializable {
     static {
         systemAdministration = SystemAdministration.initialize();
     }
+
+    @FXML
+    private TabPane tabContainer;
 
     @FXML
     private VBox myJourneys, availableJourneys, allJourneys;
@@ -100,6 +104,7 @@ public class TravelerMainScreen implements Initializable {
         fillJourneyTabs(traveler.getMyJourneys(), myJourneys, false, true);
         fillJourneyTabs(traveler.getAvailableJourneys(), availableJourneys, true, false);
         fillJourneyTabs(traveler.getAllJourneys(), allJourneys, false, false);
+        balanceLabel.setText(traveler.getTravelCard().getBalance() + "$");
     }
 
     @FXML
@@ -110,7 +115,7 @@ public class TravelerMainScreen implements Initializable {
         }
         journeyList.getChildren().clear();
         for (Journey journey : journeys) {
-            ControllerUtility.generateJourneyViewForTraveler(journey, journeyList, !add, !remove, traveler);
+            ControllerUtility.generateJourneyViewForTraveler(journey, journeyList, !add, !remove, traveler, tabContainer);
         }
     }
 }

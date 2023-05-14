@@ -19,6 +19,6 @@ public class ElderJourney extends Journey {
 
     @Override
     public String info() {
-        return super.info() + ", age threshold: " + ageThreshold;
+        return super.info() + "\nAge Threshold: " + ageThreshold + " years";
     }
 }

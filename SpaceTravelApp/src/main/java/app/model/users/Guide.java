@@ -202,7 +202,7 @@ public class Guide extends Staff {
 
         int prob = (int) Utility.generateRandom(1,6);
         Journey journey;
-        if (prob == 1) {
+        if (prob > 1) {
             journey = new Journey(id, names[namePicker], price, capacity, this, date, JourneyState.PENDING);
         } else {
             journey = new ElderJourney(id, names[namePicker], price, capacity, this, date, JourneyState.PENDING, ageThreshold);

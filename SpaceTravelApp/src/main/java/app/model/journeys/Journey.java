@@ -107,7 +107,13 @@ public class Journey implements Observable {
     }
 
     public String info() {
-        return "Regular Journey: " + this.id;
+        return "Name: " + this.name + "\n" +
+                "ID: "+ this.id + "\n" +
+                "State: " + this.journeyState + "\n" +
+                "Author: " + this.getAuthor().getUsername() + "\n" +
+                "Price: " + this.price + "$\n" +
+                "Approximate Departure Date: " + this.date + "\n" +
+                "Free Seats: " + this.loggedUsers + "/" + this.capacity;
     }
 
     @Override

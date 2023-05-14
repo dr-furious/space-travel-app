@@ -69,12 +69,18 @@ public class Owner extends Staff {
 
         if (journeyState == JourneyState.PENDING) {
             System.out.println("Owner seeeee ya");
+            if (allJourneys.contains(journey)) {
+                return;
+            }
             newJourneys.add(journey);
             return;
         }
 
         if (journeyState == JourneyState.CANCELLED || journeyState == JourneyState.AVAILABLE) {
-            allJourneys.add(journey);
+            if (!allJourneys.contains(journey)) {
+                allJourneys.add(journey);
+            }
+
             newJourneys.remove(journey);
         }
     }

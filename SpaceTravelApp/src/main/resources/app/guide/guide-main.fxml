@@ -156,7 +156,7 @@ fx:controller="app.controller.GuideMainScreen">
                       <content>
                           <ScrollPane prefHeight="567.0" prefWidth="600.0">
                               <content>
-                                  <VBox fx:id="declinedJourneys" prefHeight="580.0" prefWidth="640.0" styleClass="scroll-items-container">
+                                  <VBox fx:id="declinedJourneys" prefHeight="629.0" prefWidth="640.0" styleClass="scroll-items-container">
                                   </VBox>
                               </content>
                           </ScrollPane>

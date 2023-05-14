@@ -1,5 +1,6 @@
 # Space Travel App
 - Author: Martin Sivák
+
 Space Travel App simulates an application where simplified space journeys can be managed.
 
 ## Users

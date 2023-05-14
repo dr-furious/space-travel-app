@@ -1,7 +1,6 @@
 package app.controller;
 
 import app.Main;
-import app.model.SystemAdministration;
 import app.model.journeys.Journey;
 import app.model.journeys.JourneyState;
 import app.model.users.Owner;
@@ -13,10 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.stage.Stage;

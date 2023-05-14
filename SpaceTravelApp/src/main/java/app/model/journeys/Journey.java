@@ -5,7 +5,6 @@ import app.model.observer.Observable;
 import app.model.users.Guide;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Journey implements Observable {
     private long id;
@@ -18,9 +17,6 @@ public class Journey implements Observable {
     private JourneyState journeyState;
 
     private ArrayList<Notifiable> observers;
-    // Guide -> Owner : PENDING, ACCEPTED, DECLINED
-    // Traveler :
-
 
     public Journey(long id, String name, int price, int capacity, Guide author, String date, JourneyState journeyState) {
         this.id = id;

@@ -4,7 +4,6 @@ import app.model.users.Owner;
 import app.model.users.User;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class OwnerAccess implements Accessible {
 

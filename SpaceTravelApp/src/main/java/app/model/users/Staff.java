@@ -1,8 +1,5 @@
 package app.model.users;
 
-import app.model.observer.Notifiable;
-import app.model.observer.Observable;
-
 public abstract class Staff extends User {
     private static int accessToken;
     public Staff(String username, int birthYear, int password, UserType userView) {

@@ -1,13 +1,9 @@
 package app.model.access;
 
 import app.model.users.Guide;
-import app.model.users.Staff;
-import app.model.users.Traveler;
 import app.model.users.User;
 
 import java.util.List;
-import java.util.Scanner;
-
 public class GuideAccess implements Accessible {
 
     @Override

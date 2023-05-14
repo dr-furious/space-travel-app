@@ -4,16 +4,12 @@ import app.model.SystemAdministration;
 import app.model.Utility;
 import app.model.journeys.Journey;
 import app.model.users.Guide;
-import app.model.users.Owner;
-import app.model.users.Traveler;
-import app.model.users.User;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.layout.*;
 
 import java.io.IOException;

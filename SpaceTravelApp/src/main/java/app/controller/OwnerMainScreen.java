@@ -4,7 +4,6 @@ import app.model.SystemAdministration;
 import app.model.Utility;
 import app.model.journeys.Journey;
 import app.model.users.Owner;
-import app.model.users.Traveler;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;

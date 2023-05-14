@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The Controller for the main screen of the Traveler user
+ */
 public class TravelerMainScreen implements Initializable {
     private Traveler traveler;
     private Timer timer = new Timer();
@@ -67,6 +70,11 @@ public class TravelerMainScreen implements Initializable {
         balanceLabel.setText(traveler.getTravelCard().getBalance() + "$");
     }
 
+    /**
+     * @param url not used
+     * @param resourceBundle not used
+     * This method loads all necessary user data onto the screen immediately after the scene with this screen is displayed
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         traveler = (Traveler) systemAdministration.getCurrentUser();
@@ -103,6 +111,7 @@ public class TravelerMainScreen implements Initializable {
         fillJourneyTabs(traveler.getAllJourneys(), allJourneys, false, false);
         balanceLabel.setText(traveler.getTravelCard().getBalance() + "$");
     }
+
 
     @FXML
     private void fillJourneyTabs(ArrayList<Journey> journeys, VBox journeyList, boolean add, boolean remove) {

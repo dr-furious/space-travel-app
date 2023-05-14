@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The Controller for the Signup screen
+ */
 public class Signup implements Initializable {
     @FXML
     private ChoiceBox<String> birthYears;

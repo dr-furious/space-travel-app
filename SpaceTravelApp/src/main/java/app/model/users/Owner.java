@@ -85,10 +85,20 @@ public class Owner extends Staff {
         }
     }
 
+    /**
+     * @param journey journey that is set to the AVAILABLE state afterwards
+     *
+     * Sets the Journey's state to AVAILABLE
+     */
     public void approveJourney(Journey journey) {
         journey.setJourneyState(JourneyState.AVAILABLE);
     }
 
+    /**
+     * @param journey journey that is set to the CANCELLED state afterwards
+     *
+     * Sets the Journey's state to CANCELLED
+     */
     public void declineJourney(Journey journey) {
         journey.setJourneyState(JourneyState.CANCELLED);
     }

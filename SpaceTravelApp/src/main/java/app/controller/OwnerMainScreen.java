@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The Controller for the main screen of the Owner user
+ */
 public class OwnerMainScreen implements Initializable {
     private Owner owner;
     private Timer timer = new Timer();
@@ -67,6 +70,11 @@ public class OwnerMainScreen implements Initializable {
         balanceLabel.setText(owner.getTravelCard().getBalance() + "$");
     }
 
+    /**
+     * @param url not used
+     * @param resourceBundle not used
+     * This method loads all necessary user data onto the screen immediately after the scene with this screen is displayed
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         owner = (Owner) systemAdministration.getCurrentUser();

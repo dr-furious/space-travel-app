@@ -5,8 +5,21 @@ import app.model.users.User;
 
 import java.util.List;
 
+/**
+ * OwnerAccess
+ */
 public class OwnerAccess implements Accessible {
 
+    /**
+     @param username username
+      * @param birthYear birth year of the user
+     * @param password user's password
+     * @param existingUsers the list of existing users in the system
+     * @param token token required when the Guide or Owner tries to signup
+     * @return success code: 0 - correct signup, 1 - existing username, 3 - incorrect token
+     *
+     * Signs in a Guide
+     */
     @Override
     public int signup(String username, int birthYear, int password, List<User> existingUsers, int token) {
         Owner.setAccessToken(9999);
@@ -26,6 +39,15 @@ public class OwnerAccess implements Accessible {
         return 0;
     }
 
+    /**
+     * @param username username
+     * @param password user's password
+     * @param existingUsers the list of existing users in the system
+     * @param token token required when the Guide or Owner tries to signup
+     * @return success code: 0 - correct signup, 1 - existing username, 2 - incorrect password,3 - incorrect token
+     *
+     * Logs in an Owner
+     */
     @Override
     public int login(String username, int password, List<User> existingUsers, int token) {
         Owner.setAccessToken(9999);

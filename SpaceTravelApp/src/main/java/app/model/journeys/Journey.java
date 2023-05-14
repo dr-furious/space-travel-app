@@ -6,6 +6,10 @@ import app.model.users.Guide;
 
 import java.util.ArrayList;
 
+/**
+ * The top-level Journey class
+ * Every Journey is being observed by users and users are updated each time it changes state
+ */
 public class Journey implements Observable {
     private long id;
     private String name;
@@ -102,6 +106,9 @@ public class Journey implements Observable {
         updateObservers();
     }
 
+    /**
+     * @return the information about the journey
+     */
     public String info() {
         return "Name: " + this.name + "\n" +
                 "ID: "+ this.id + "\n" +

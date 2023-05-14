@@ -15,6 +15,9 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+/**
+ * The Controller for the Login screen
+ */
 public class Login {
 
     @FXML

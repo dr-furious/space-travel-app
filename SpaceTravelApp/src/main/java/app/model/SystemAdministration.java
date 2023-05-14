@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The SystemAdministration utilizes a Singleton design pattern - there always exists only one instance of this class
+ * that is then shared across all controllers. It keeps the journeys created and users signed in
+ */
 public class SystemAdministration {
 
     private AccessContext accessContext;
@@ -37,6 +41,10 @@ public class SystemAdministration {
         return instance;
     }
 
+    /**
+     * @param userType type of User
+     * Based on the User type, the according access strategy (for signup and login) is set
+     */
     public void setAccessContext(UserType userType) {
         switch (userType) {
             case TRAVELER -> {
@@ -89,12 +97,20 @@ public class SystemAdministration {
         return responseCode;
     }
 
+    /**
+     * Signs out currently logged User, ends his session and prints all users to the console
+     */
     public void logout() {
         currentUser = null;
         endSession();
         printUsers();
     }
 
+    /**
+     * @param username username of a User that is currently logged in
+     *
+     * Sets the currently logged user
+     */
     private void setCurrentUser(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
@@ -132,12 +148,21 @@ public class SystemAdministration {
         journey.setJourneyState(JourneyState.PENDING);
     }
 
+
+    /**
+     * @param subject journey that was recently added to the system
+     *                After the new journey is added to the system, it updates all user about its state
+     */
     private void setObservers(Observable subject) {
         for (User user : users){
             subject.addObserver(user);
         }
     }
 
+    /**
+     * @param observer user that was recently added to the system
+     *                After the new user is added to the system, it is updated by all journeys about their state
+     */
     private void setSubjects(Notifiable observer) {
         for (Journey journey : journeys){
             journey.addObserver(observer);

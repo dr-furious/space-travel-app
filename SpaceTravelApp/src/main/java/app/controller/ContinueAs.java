@@ -6,6 +6,10 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+
+/**
+ * Controller for initial screen. Based on what button user clicks, the access strategy is set
+ */
 public class ContinueAs {
     private static final SystemAdministration systemAdministration;
 

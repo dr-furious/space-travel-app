@@ -1,5 +1,8 @@
 package app.model;
 
+/**
+ * This Utility class contains all methods that are small and not suitable for any other class
+ */
 public class Utility {
 
     public static long generateRandom(long min, long max) {

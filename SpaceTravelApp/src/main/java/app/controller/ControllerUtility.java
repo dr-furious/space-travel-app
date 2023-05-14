@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Contains all utility functions for generating the content into the View, switching scenes and displaying messages (pop-ups)
+ */
 public class ControllerUtility {
     private static int H_SIZE;
     private static int V_SIZE;

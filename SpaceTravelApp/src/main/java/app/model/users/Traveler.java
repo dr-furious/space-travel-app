@@ -23,6 +23,14 @@ public class Traveler extends User {
 
     }
 
+    /**
+     * @param amount amount which Traveler wants to pay to another user
+     * @param to User to whom the Traveler is paying to
+     * @return true if Traveler was able to pay the given amount, false if not
+     *
+     * Enables Traveler to pay desired amount to a certain User (e.g. Guide). If the Traveler does not have enough money
+     * on his TravelCard (is not able to pay) the exception is thrown and caught and false is returned
+     */
     @Override
     public boolean pay(double amount, User to) {
         try {
@@ -106,6 +114,10 @@ public class Traveler extends User {
         availableJourneys.add(journey);
     }
 
+    /**
+     * @param journey journey Traveler wants to buy
+     * @return true if Traveler was able to pay for the Journey, false otherwise
+     */
     public boolean addMyJourney(Journey journey) {
         if (pay(journey.getPrice(), journey.getAuthor())) {
             myJourneys.add(journey);

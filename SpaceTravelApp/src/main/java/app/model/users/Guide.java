@@ -69,6 +69,10 @@ public class Guide extends Staff {
         return true;
     }
 
+    /**
+     * @param journeys the list of existing Journeys
+     * @return a new Journey which attributes are generated
+     */
     public Journey createJourney(ArrayList<Journey> journeys) {
         ArrayList<Long> ids = extractJourneyIDs(journeys);
         long id;

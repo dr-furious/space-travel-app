@@ -3,6 +3,9 @@ package app.model.users;
 import app.model.Utility;
 import app.model.observer.Notifiable;
 
+/**
+ * Abstract class User
+ */
 public abstract class User implements Payable, Notifiable {
     private String username;
     private int password;
@@ -19,6 +22,9 @@ public abstract class User implements Payable, Notifiable {
         this.currentUserView = currentUserView;
     }
 
+    /**
+     * Each user has its own TravelCard with unique number
+     */
     public class TravelCard {
         private String name;
         private long number;

@@ -19,6 +19,9 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The Controller for the main screen of the Guide user
+ */
 public class GuideMainScreen implements Initializable {
     private Guide guide;
     private Timer timer = new Timer();
@@ -72,6 +75,11 @@ public class GuideMainScreen implements Initializable {
         ControllerUtility.informOnEvent(event, "New Journey created!", 400, 200);
     }
 
+    /**
+     * @param url not used
+     * @param resourceBundle not used
+     * This method loads all necessary user data onto the screen immediately after the scene with this screen is displayed
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         guide = (Guide) systemAdministration.getCurrentUser();
